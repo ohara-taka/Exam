@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+#container {
+	display: flex;
+	width: 810px;
+}
+
+#nav {
+	display: flex;
+	width: 200px%; /* メニューの幅を指定（適宜調整） */
+	height: 300px; /* 画面の高さいっぱいにメニューを伸ばす */
+	background-color: #fff; /* メニューの背景色 */
+	padding-top: 20px; /* メニュー項目が上端から離れるスペース */
+	border-right: 2px solid black;
+}
+
+#main {
+	display: flex;
+	width; 600px;
+}
+
