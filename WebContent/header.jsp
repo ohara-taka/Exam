@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<html>
 <head>
-<meta charset="UTF-8">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <title>Servlet/JSP Samples</title>
 </head>
 <body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr bgcolor="#aaaaff">
+<td  width="80%"><h1>　得点管理システム</h1></td>
+<td width="20%" valign="bottom">GET名前　ログアウト</td>
+</tr>
+</table>
+
+
