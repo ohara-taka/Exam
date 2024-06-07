@@ -5,13 +5,14 @@
 
 
 <div nav>
-	<h2>メニュー</h2>
-	<h3>学生管理</h3>
+	<a href="">メニュー</a>
+	<a href="">学生管理</a>
 	<ul>
-		<li><a href="/kouka2_takahara/member/all">学生一覧</a><br>
-		<li><a href="/kouka2_takahara/member/ToCreateForm.action">学生追加</a><br>
-		<li><a href="/kouka2_takahara/member/preupdate.jsp">学生更新</a><br>
-		<li><a href="/kouka2_takahara/member/ToDeleteConfirm.action">学生削除</a>
+		<li>成績管理<br>
+		<li><a href="">成績登録</a><br>
+		<li><a href="">学生追加</a><br><br>
+		<li><a href="">成績参照</a><br><br>
+		<li><a href="">科目管理</a>
 	</ul>
 </div>
 <hr>

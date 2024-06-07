@@ -1,3 +1,4 @@
+
 <title>得点管理システム</title>
 <link rel="stylesheet" href="../css/menu-styles.css">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,7 +15,7 @@
 <ul>
 <li><a href="#">メニュー</a></li>
 <li><a href="#">学生管理</a></li>
-<li><p>成績管理</p></li>
+<li><a href="#">成績管理</a></li>
 <li><a href="#">成績登録</a></li>
 <li><a href="#">成績参照</a></li>
 <li><a href="#">科目管理</a></li>
@@ -27,7 +28,7 @@
 <a href="#">学生管理</a>
 </div>
 <div class="card grade-management">
-<p>成績管理</p>
+<a href="#">成績管理</a>
 <ul>
 <li><a href="#">成績登録</a></li>
 <li><a href="#">成績参照</a></li>
