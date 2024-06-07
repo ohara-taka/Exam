@@ -5,21 +5,14 @@
 
     <%@include file="../header.jsp" %>
 
+
 <div class="container">
 
 
-</header>
 <div class="content">
-<nav class="sidebar">
-<ul>
-<li><a href="#">メニュー</a></li>
-<li><a href="#">学生管理</a></li>
-<li><p>成績管理</p></li>
-<li><a href="#">成績登録</a></li>
-<li><a href="#">成績参照</a></li>
-<li><a href="#">科目管理</a></li>
-</ul>
-</nav>
+
+<%@include file="sideber.jsp" %>
+
 <main class="main-content">
 <h2>メニュー</h2>
 <div class="cards">
@@ -38,6 +31,7 @@
 </div>
 </div>
 </main>
+</div>
 </div>
 
 <%@include file="../footer.jsp" %>

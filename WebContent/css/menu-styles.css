@@ -82,7 +82,8 @@ header h1 {
 
 .sidebar {
 
-    width: 200px;
+    width: 150px;
+    flex-shrink: 0;
 
     background-color: #f9f9f9;
 
