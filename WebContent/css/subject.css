@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #ddeeff;
+    padding: 10px 20px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.subject-management {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+}
+
+.subject-management h2 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: normal;
+    text-align: center;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.subject-management .add-new {
+    display: inline-block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #007bff;
+    float: right;
+}
+
+.subject-management table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.subject-management table, .subject-management th, .subject-management td {
+    border: 1px solid #ddd;
+}
+
+.subject-management th, .subject-management td {
+    padding: 8px;
+    text-align: left;
+}
+
+.subject-management th {
+    background-color: #f2f2f2;
+}
+
+.subject-management a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #eee;
+    border-top: 1px solid #ccc;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
