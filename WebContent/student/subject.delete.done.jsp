@@ -30,7 +30,7 @@
     </style>
 </head>
 <body>
-    <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;学生情報変更</h2>
+    <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;科目情報変更</h2>
     <p class="registration-complete">変更が完了しました</p>
 
     <!-- 4行のスペースを追加 -->
@@ -38,7 +38,7 @@
 
     <!-- Topページへ戻る為のリンクを下に表示 -->
     <div class="student-links">
-        <a href="/Exam/student/student_list.jsp">学生一覧</a>
+        <a href="/Exam/student/#">科目一覧</a>
     </div>
 </body>
 </html>

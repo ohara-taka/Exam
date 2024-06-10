@@ -27,18 +27,22 @@
         .student-links {
             display: inline; /* インライン要素として表示 */
         }
+        .student-links a:first-child {
+            margin-right: 6ch; /* 最初のリンクに6文字分のスペースを追加 */
+        }
     </style>
 </head>
 <body>
-    <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;学生情報変更</h2>
-    <p class="registration-complete">変更が完了しました</p>
+    <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;成績管理</h2>
+    <p class="registration-complete">登録が完了しました</p>
 
     <!-- 4行のスペースを追加 -->
     <br><br><br><br>
 
     <!-- Topページへ戻る為のリンクを下に表示 -->
     <div class="student-links">
-        <a href="/Exam/student/student_list.jsp">学生一覧</a>
+        <a href="/Exam/student/student_create.jsp">戻る</a>
+        <a href="/Exam/student/#">成績参照</a>
     </div>
 </body>
 </html>
