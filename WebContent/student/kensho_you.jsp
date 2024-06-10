@@ -8,7 +8,8 @@
     <style><!--
     table {
         border-collapse: collapse;
-        font-size: 12px;
+        font-size: 20px;
+        width: 50%;
     }
     tr {
         border-color: gray;
@@ -37,7 +38,7 @@
 
 
 このぺーじがうまく表示できるかのテストです
-<table width="50%"><tr><td>日付</td><td>名前</td><td>住所</td></tr>
+<table><tr><td>日付</td><td>名前</td><td>住所</td></tr>
 <tr><td>1/1</td><td>高原</td><td>大分県</td></tr>
 </table>
 

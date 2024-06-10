@@ -13,7 +13,7 @@ main {
     justify-content: center;
 }
 
-.subject-management {
+.subject-management-sub {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -22,7 +22,7 @@ main {
     max-width: 800px;
 }
 
-.subject-management h2 {
+.subject-management-sub h2 {
     margin-top: 0;
     font-size: 24px;
     font-weight: normal;
@@ -31,7 +31,7 @@ main {
     padding-bottom: 10px;
 }
 
-.subject-management .add-new {
+.subject-management-sub .add-new {
     display: inline-block;
     margin-bottom: 10px;
     text-decoration: none;
@@ -39,26 +39,26 @@ main {
     float: right;
 }
 
-.subject-management table {
+.subject-management-sub table {
     width: 100%;
 border-bottom: 2px solid #ccc;
 }
 
-.subject-management table, .subject-management th, .subject-management td {
+.subject-management-sub table, .subject-management-sub th, .subject-management-sub td {
 border-bottom: 2px solid #ccc;
 }
 
-.subject-management th, .subject-management td {
+.subject-management-sub th, .subject-management-sub td {
     padding: 8px;
     text-align: left;
 }
 
-.subject-management th {
+.subject-management-sub th {
     background-color: #f2f2f2;
 }
 
 
-.subject-management a {
+.subject-management-sub a {
     margin-right: 10px;
     text-decoration: none;
     color: #007bff;
