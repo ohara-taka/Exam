@@ -5,7 +5,7 @@
 
 
 <div nav>
-	<a href="">メニュー</a>
+	<a href="TopMenuAction">メニュー</a>
 	<a href="">学生管理</a>
 	<ul>
 		<li>成績管理<br>

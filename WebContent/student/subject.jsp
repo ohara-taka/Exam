@@ -21,7 +21,7 @@
 <main>
         <section class="subject-management-sub">
             <h2>科目管理</h2>
-            <a href="#" class="add-new">科目新規追加</a>
+            <a href="ToSubjectCreate.action" class="add-new">科目新規追加</a>
             <table>
                 <thead>
                     <tr>
@@ -34,7 +34,7 @@
                     <tr>
                         <td>A02</td>
                         <td>国語</td>
-                        <td><a href="#">変更</a> <a href="#">削除</a></td>
+                        <td><a href="ToSubjectUpdate.action">変更</a> <a href="#">削除</a></td>
                     </tr>
                     <tr>
                         <td>B02</td>
