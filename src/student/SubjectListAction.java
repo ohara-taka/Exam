@@ -5,13 +5,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import tool.Action;
 
-public class ToSubjectCreateAction extends Action {
+public class SubjectListAction extends Action {
 	public String execute(
 		HttpServletRequest request, HttpServletResponse response
 	) throws Exception {
 
 
 		// FrontControllerを使用しているためreturn文でフォワードできる
-		return "subject_create.jsp";
+		return "subject_list.jsp";
 	}
 }

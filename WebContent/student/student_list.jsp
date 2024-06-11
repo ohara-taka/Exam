@@ -98,7 +98,7 @@ select {
 			<h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;学生管理</h2>
 
 			<div class="new-registration">
-				<a href="ToStudentCreate.action">新規登録</a>
+				<a href="StudentCreate.action">新規登録</a>
 			</div>
 
 

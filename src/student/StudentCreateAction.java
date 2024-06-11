@@ -5,13 +5,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import tool.Action;
 
-public class ToTestlistAction extends Action {
+public class StudentCreateAction extends Action {
 	public String execute(
 		HttpServletRequest request, HttpServletResponse response
 	) throws Exception {
 
 
 		// FrontControllerを使用しているためreturn文でフォワードできる
-		return "test_list.jsp";
+		return "student_create.jsp";
 	}
 }
