@@ -5,6 +5,7 @@
 
     <%@include file="../header.jsp" %>
 
+<body>
 
 <div class="container">
 
@@ -13,7 +14,7 @@
 
 <%@include file="sideber.jsp" %>
 
-<main class="main-content">
+<div class="main-content">
 
 
 
@@ -25,8 +26,16 @@
 
 
 
+<<<<<<< HEAD
 </main>
 </div>
 </div>
+=======
+</div>
+</div>
+</div>
+
+</body>
+>>>>>>> topmain
 
 <%@include file="../footer.jsp" %>

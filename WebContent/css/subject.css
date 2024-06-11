@@ -1,0 +1,54 @@
+
+
+.subject-management-sub {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+}
+
+.subject-management-sub h2 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: normal;
+    text-align: center;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.subject-management-sub .add-new {
+    display: inline-block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #007bff;
+    float: right;
+}
+
+.subject-management-sub table {
+    width: 100%;
+border-bottom: 2px solid #ccc;
+}
+
+.subject-management-sub table, .subject-management-sub th, .subject-management-sub td {
+border-bottom: 2px solid #ccc;
+}
+
+.subject-management-sub th, .subject-management-sub td {
+    padding: 8px;
+    text-align: left;
+}
+
+.subject-management-sub th {
+    background-color: #f2f2f2;
+}
+
+
+.subject-management-sub a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+
