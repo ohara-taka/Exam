@@ -166,7 +166,7 @@ select {
 							<td>${student.student_name}</td>
 							<td>${student.student_class}</td>
 							<td>${student.student_in_school}</td>
-							<td><a href="#">変更</a></td>
+							<td><a href="StudentUpdate.action">変更</a></td>
 
 						</tr>
 					</c:forEach>
