@@ -26,10 +26,7 @@ public class StudentDao extends Dao {
         student.setStudent_name(rs.getString("student_name"));
         student.setCourse_id(rs.getInt("course_id"));
 
-        //コースビーンをインスタンス化して情報をセット
-        Course course = new Course();
-        course.setCourse_id(rs.getInt("course_id"));
-        course.setCourse_name(rs.getString("course_name"));
+
 
         //コースビーンを学生ビーンにセット
         student.setCourse(course);
