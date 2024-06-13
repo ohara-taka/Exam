@@ -9,7 +9,7 @@ import java.util.List;
 import bean.School;
 import bean.Subject;
 
-public class SubjectDAO extends DAO {
+public class SubjectDao extends DAO {
 
     // コースを全件取得するsubjectAllメソッド
     public List<Subject> subjectAll() throws Exception {
