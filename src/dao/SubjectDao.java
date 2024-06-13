@@ -31,8 +31,7 @@ public class SubjectDao extends Dao {
         con.close();
 
         return subjectList;
-    }
-
+}
     // 指定されたidとschoolに対応するSubjectを取得する
     public Subject get(String id, School school) throws Exception {
         Subject subject = null;
@@ -118,3 +117,4 @@ public class SubjectDao extends Dao {
         return result > 0;
     }
     }
+
