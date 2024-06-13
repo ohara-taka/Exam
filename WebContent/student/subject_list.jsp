@@ -31,31 +31,33 @@
                     </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="student" items="${studentList}">
                     <tr>
-                        <td>A02</td>
-                        <td>国語</td>
+                        <td>${subject.subject_id}</td>
+                        <td>${subject.subject_name}</td>
                         <td><a href="SubjectUpdate.action">変更</a> <a href="#">削除</a></td>
                     </tr>
                     <tr>
-                        <td>B02</td>
-                        <td>数学</td>
+                        <td>${subject.subject_id}</td>
+                        <td>${subject.subject_name}</td>
                         <td><a href="#">変更</a> <a href="#">削除</a></td>
                     </tr>
                     <tr>
-                        <td>C02</td>
-                        <td>英語コミュニケーション基礎</td>
+                        <td>${subject.subject_id}</td>
+                        <td>${subject.subject_name}</td>
                         <td><a href="#">変更</a> <a href="#">削除</a></td>
                     </tr>
                     <tr>
-                        <td>D02</td>
-                        <td>物理</td>
+                        <td>${subject.subject_id}</td>
+                        <td>${subject.subject_name}</td>
                         <td><a href="#">変更</a> <a href="#">削除</a></td>
                     </tr>
                     <tr>
-                        <td>E02</td>
-                        <td>情報社会と変革論Ⅰ</td>
+                        <td>${subject.subject_id}</td>
+                        <td>${subject.subject_name}</td>
                         <td><a href="#">変更</a> <a href="#">削除</a></td>
                     </tr>
+                     </c:forEach>
                 </tbody>
             </table>
         </section>

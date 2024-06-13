@@ -22,8 +22,8 @@ public class SubjectDao extends Dao {
 
         while (rs.next()) {
             Subject subject = new Subject();
-            subject.setCd(rs.getString("subject_cd"));
-            subject.setName(rs.getString("subject_name"));
+            subject.setCd(rs.getString("cd"));
+            subject.setName(rs.getString("name"));
             subjectList.add(subject);
         }
 
@@ -40,7 +40,7 @@ public class SubjectDao extends Dao {
         Connection con = getConnection();
 
         PreparedStatement st = con.prepareStatement(
-            "SELECT * FROM subject WHERE subject_cd = ? AND school_name = ?");
+            "SELECT * FROM subject WHERE subject_cd = ? AND school_cd = ?");
         st.setString(1, id);
         st.setString(2, school.getCd());
         ResultSet rs = st.executeQuery();
