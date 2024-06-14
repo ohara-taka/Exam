@@ -13,11 +13,17 @@ public class SubjectListAction extends Action {
 	public String execute(
 		HttpServletRequest request, HttpServletResponse response
 	) throws Exception {
-		SubjectDao dao=new SubjectDao();
-		List<Subject> subjectList=dao.subjectAll();
 
-		request.setAttribute("subjectList", subjectList);
+	    SubjectDao subjectDao = new SubjectDao();
+	    List<Subject> subjectList = null;
 
+	    try {
+	        subjectList = subjectDao.subjectAll();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    request.setAttribute("subjectList", subjectList);
 
 		// FrontControllerを使用しているためreturn文でフォワードできる
 		return "subject_list.jsp";

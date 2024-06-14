@@ -4,18 +4,7 @@
 <%@ page import="bean.Subject" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%
-    SubjectDao subjectDao = new SubjectDao();
-    List<Subject> subjectList = null;
 
-    try {
-        subjectList = subjectDao.subjectAll();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-
-    request.setAttribute("subjectList", subjectList);
-%>
 
 <!DOCTYPE html>
 <html>
