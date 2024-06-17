@@ -1,6 +1,8 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <head>
 
@@ -133,55 +135,36 @@ select {
 			</form>
 
 
+			<div>
+				<p>検索結果件数 :</p>
+			</div>
 
+			<table>
+				<tr>
+					<th>入学年度</th>
+					<th>学生番号</th>
+					<th>氏名</th>
+					<th>クラス</th>
+					<th>在学中</th>
+				</tr>
 
-
-
-
-			<c:set var="condition" value="${true}" />
-			<!-- この値を条件に応じて設定 -->
-
-			<!-- 条件が true の場合に表示 -->
-			<c:if test="${condition}">
-
-				<div>
-					<p>検索結果件数 :</p>
-				</div>
-
-				<table>
-					<tr>
-						<th>入学年度</th>
-						<th>学生番号</th>
-						<th>氏名</th>
-						<th>クラス</th>
-						<th>在学中</th>
-					</tr>
-
-					<!-- StudentAll.javaからstudentが送られてきているので、
+				<!-- StudentAll.javaからstudentが送られてきているので、
 				１件ずつstudentに取り出して表示している。 -->
-					<c:forEach var="student" items="${studentList}">
-						<tr>
-							<td>${student.student_year}</td>
-							<td>${student.student_id}</td>
-							<td>${student.student_name}</td>
-							<td>${student.student_class}</td>
-							<td>${student.student_in_school}</td>
-							<td><a href="StudentUpdate.action">変更</a></td>
+<!--  			<c:forEach var="student" items="${student}">
+					<tr>
+						<td>${student.entYear}</td>
+						<td>${student.no}</td>
+						<td>${student.name}</td>
+						<td>${student.classNum}</td>
+						<td><a href="StudentUpdate.action">変更</a></td>
 
-						</tr>
-					</c:forEach>
-				</table>
+					</tr>
+				</c:forEach>-->
+			</table>
 
-			</c:if>
-
-			<!-- 条件が false の場合に表示 -->
-			<c:if test="${not condition}">
-
-				<div>
-					<p>学生情報が存在しませんでした</p>
-				</div>
-
-			</c:if>
+			<div>
+				<p>学生情報が存在しませんでした</p>
+			</div>
 
 		</div>
 	</div>
