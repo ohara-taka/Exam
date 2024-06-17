@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.Student;
 import bean.Teacher;
+import dao.ClassNumDao;
 import dao.StudentDao;
 import tool.Action;
 
@@ -31,7 +32,7 @@ public class StudentListAction extends Action {
         LocalDate todaysDate = LocalDate.now(); // LocalDateインスタンスを取得
         int year = todaysDate.getYear(); // 現在の年を取得
         StudentDao sDao = new StudentDao(); // 学生Dao
-//        ClassNumDao cNumDao = new ClassNumDao(); // クラス番号Daoを初期化
+        ClassNumDao ClassNumDao = new ClassNumDao(); // クラス番号Daoを初期化
         Map<String, String> errors = new HashMap<>(); // エラーメッセージ
 
         entYearStr = req.getParameter("f1");
@@ -40,7 +41,7 @@ public class StudentListAction extends Action {
 
         // DBからデータ取得
         // ログインユーザーの学校コードをもとにクラス番号の一覧を取得
-        List<String> list = cNumDao.filter(teacher.getSchool());
+        List<String> list = ClassNumDao.filter(teacher.getSchool());
 
         if (entYear != 0 && !classNum.equals("0")) {
             // 入学年度とクラス番号を指定
@@ -92,5 +93,7 @@ public class StudentListAction extends Action {
 
         // FrontControllerを使用しているためreturn文でフォワードできる
         req.getRequestDispatcher("student_list.jsp").forward(req, response);
+        return null; // 戻り値を追加
+
     }
 }
