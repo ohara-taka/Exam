@@ -8,40 +8,49 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.InitialContext;    // JNDI APIを使って名前とオブジェクトを対応付けるための初期コンテキスト
-import javax.sql.DataSource;		   // データベース接続プールのためのインターフェース
+import bean.ClassNum;
+import bean.School;
 
 
+public class ClassNumDao extends Dao {
 
-public class ClassNumDao {
-    static DataSource ds;
+//	    static DataSource ds;
 
-    public Connection getConnection() throws Exception {
-        if (ds == null) {
-            InitialContext ic = new InitialContext();
-            ds = (DataSource) ic.lookup("java:/comp/env/jdbc/TAKUMAx2database");
-        }
-        return ds.getConnection();
-    }
+//	    public Connection getConnection() throws Exception {
+//	        if (ds == null) {
+//	            InitialContext ic = new InitialContext();
+//	            ds = (DataSource) ic.lookup("java:/comp/env/jdbc/TAKUMAx2database");
+//	        }
+//	        return ds.getConnection();
+//	    }
 
-    public List<String> getClassNumList() {
-        List<String> classNumList = new ArrayList<>();
-        String sql = "SELECT class_name FROM ClassNum";
 
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
+	public List<String> filter(School school) throws Exception {
+		List<String> classNumList = new ArrayList<>();
+		String sql = "SELECT class_name FROM ClassNum WHERE school_id = ?";
 
-            while (rs.next()) {
-                classNumList.add(rs.getString("class_name"));
-            }
+		try (Connection con = getConnection();
+				PreparedStatement st = con.prepareStatement(sql)) {
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			st.setString(1, school.getCd()); // Schoolオブジェクトからschool_idを取得して設定
 
-        return classNumList;
-    }
+			try (ResultSet rs = st.executeQuery()) {
+				while (rs.next()) {
+					ClassNum classNum = new ClassNum();
+					classNum.setSchool(school); // Schoolオブジェクトを設定
+					classNum.setNum(rs.getString("class_name")); // class_nameをnumフィールドに設定
+					classNumList.add(classNum.getNum());
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new Exception("Database error occurred", e); // SQLExceptionを一般的なExceptionに変換
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+
+		return classNumList;
+	}
 }
