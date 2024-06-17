@@ -5,7 +5,6 @@
 
 <%@include file="../header.jsp"%>
 
-<body>
 
 	<div class="container">
 

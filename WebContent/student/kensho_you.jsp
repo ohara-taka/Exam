@@ -1,56 +1,59 @@
-<title>得点管理システム</title>
-<link rel="stylesheet" href="../css/menu-styles.css">
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page import="bean.Teacher" %>
+<%@ page import="bean.School" %>
+<%@ page import="javax.servlet.http.*, javax.servlet.*" %>
+<%@include file="../header.jsp" %>
 
-    <%@include file="../header.jsp" %>
-
-    <style><!--
-    table {
-        border-collapse: collapse;
-        font-size: 20px;
-        width: 50%;
-    }
-    tr {
-        border-color: gray;
-        border-style: solid;
-        border-width: 1px 0;
-    }
---></style>
-
-<body>
-
-<div class="container">
+	<div class="container">
 
 
-<div class="content">
+		<div class="content">
 
-<%@include file="sideber.jsp" %>
-
-<div class="main-content">
+			<%@include file="sideber.jsp"%>
 
 
 
-
-<h1>テストページ</h1>
-
-<h2>ここはテストのページです</h2>
-
-
-このぺーじがうまく表示できるかのテストです
-<table><tr><td>日付</td><td>名前</td><td>住所</td></tr>
-<tr><td>1/1</td><td>高原</td><td>大分県</td></tr>
-</table>
-
-
-
-
-
-
-</div>
-</div>
-</div>
+			<div class="main-content">
+        <%-- ログインしていない場合にはログインフォームを表示 --%>
+        <% if (session.getAttribute("teacher") == null) { %>
+            <div class="login-box">
+                <h2>ログイン</h2>
+                <form method="post" action="login"> <!-- ログイン処理を行うURLを指定 -->
+                    <div class="input-box">
+                        <label for="id">ID</label>
+                        <input type="text" id="id" name="id" value="">
+                    </div>
+                    <div class="input-box">
+                        <label for="password">パスワード</label>
+                        <input type="password" id="password" name="password" value="">
+                    </div>
+                    <div class="checkbox-box">
+                        <input type="checkbox" id="show-password" name="show-password">
+                        <label for="show-password">パスワードを表示</label>
+                    </div>
+                    <div class="button-box">
+                        <button type="submit">ログイン</button>
+                    </div>
+                </form>
+            </div>
+        <% } else { %>
+            <%-- ログインしている場合にはユーザー情報を表示 --%>
+            <div class="info-box">
+                <h2>Teacher Information</h2>
+                <%
+                    Teacher teacher = (Teacher) session.getAttribute("teacher");
+                    if (teacher != null) {
+                %>
+                    <p>ID: <%= teacher.getId() %></p>
+                    <p>Name: <%= teacher.getName() %></p>
+                    <p>School: <%= teacher.getSchool() != null ? teacher.getSchool().getName() : "N/A" %></p>
+                <% } %>
+            </div>
+        <% } %>
+			</div>
+		</div>
+	</div>
 
 </body>
 
-<%@include file="../footer.jsp" %>
+<%@include file="../footer.jsp"%>
