@@ -27,7 +27,7 @@ public class ClassNumDao extends Dao {
 
 	public List<String> filter(School school) throws Exception {
 		List<String> classNumList = new ArrayList<>();
-		String sql = "SELECT class_name FROM ClassNum WHERE school_id = ?";
+		String sql = "SELECT CLASS_NUM FROM CLASS_NUM WHERE SCHOOL_CD = ?";
 
 		try (Connection con = getConnection();
 				PreparedStatement st = con.prepareStatement(sql)) {
@@ -38,7 +38,7 @@ public class ClassNumDao extends Dao {
 				while (rs.next()) {
 					ClassNum classNum = new ClassNum();
 					classNum.setSchool(school); // Schoolオブジェクトを設定
-					classNum.setNum(rs.getString("class_name")); // class_nameをnumフィールドに設定
+					classNum.setNum(rs.getString("CLASS_NUM")); // class_nameをnumフィールドに設定
 					classNumList.add(classNum.getNum());
 				}
 			}
