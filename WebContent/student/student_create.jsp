@@ -24,11 +24,19 @@
             box-sizing: border-box; /* ボーダーとパディングを含めて計算 */
             padding: 5px; /* パディングを設定 */
             margin-bottom: 10px; /* 下に間隔を開ける */
+            border-radius: 5px; /* 角を丸くする */
         }
 
         /* フォーム全体のスタイル */
         form {
             max-width: 100%;
+        }
+
+        button {
+        	border-radius: 5px; /* 角を丸くする */
+        	background-color: gray;
+        	color: white;
+        	margin-bottom: 10px; /* ボタンの下に間隔を開ける */
         }
 
         .student-info-registration{
@@ -46,7 +54,15 @@
                 <form action="/" method="get">
                     <label for="ent_year">入学年度</label><br>
                     <select id="ent_year" name="ent_year">
-                        <option value="">----</option>
+                    	<option value="ent_year"disabled selected>--------</option>
+
+                    	<!-- 入学年度今年から前後10年間を表示 -->
+                    	<%
+		                    int currentYear = java.time.Year.now().getValue();
+		                	for (int i = currentYear - 10; i <= currentYear + 10; i++) {
+		                        out.println("<option value=\"" + i + "\">" + i + "</option>");
+		                    }
+		                 %>
                     </select><br>
 
                     <label for="no">学生番号</label><br>
@@ -56,17 +72,17 @@
                     <input type="text" id="name" name="name" maxlength="30" required placeholder="氏名を入力してください" value="${name}"><br>
 
                     <label for="class_num">クラス</label><br>
-                    <select id="class_num" name="class_num">
-                    	<c:forEach var="num" items="${num}">
-            				<option value="${num}">${num}</option>
-        				</c:forEach>
+                     <select id="class_num" name="class_num">
+                        <c:forEach var="classNum" items="${classNumList}">
+                            <option value="${classNum}">${classNum}</option>
+                        </c:forEach>
                     </select><br>
 
                     <!-- java作成次第画面遷移 -->
                     <button type="submit" name="end">登録して終了</button><br>
 
                     <!-- java作成次第画面遷移 -->
-                    <a href="/">戻る</a>
+                    <a href="StudentListAction">戻る</a>
                 </form>
             </div>
         </div>
