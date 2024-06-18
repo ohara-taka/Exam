@@ -20,6 +20,6 @@ public class LogoutAction extends Action {
             return null; // リダイレクトしたので、ここで処理を終了する
         }
 
-        return "login.jsp"; // teacher がセッションにない場合は通常のメニューページに遷移する
+        return "/"; // teacher がセッションにない場合は通常のメニューページに遷移する
     }
 }
