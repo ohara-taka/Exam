@@ -19,6 +19,11 @@ public class FrontController extends HttpServlet {
 		try {
 			String path=request.getServletPath().substring(1);
 			String name=path.replace(".a", "A").replace('/', '.');
+
+			System.out.println("★ sevlet path ->" + request.getServletPath());
+			System.out.println("★ class name ->" + name);
+
+
 			Action action=(Action)Class.forName(name).
 				getDeclaredConstructor().newInstance();
 			String url=action.execute(request, response);

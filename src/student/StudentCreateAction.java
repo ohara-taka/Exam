@@ -1,8 +1,10 @@
 package student;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import dao.ClassNumDao;
 import tool.Action; // Actionクラスのインポート
 
@@ -13,7 +15,7 @@ public class StudentCreateAction extends Action {
     ) throws Exception {
         // ClassNumDaoを使用してクラス番号のリストを取得
         ClassNumDao classNumDao = new ClassNumDao();
-        List<String> classNumList = classNumDao.getClassNumList(); // List<String> に変更
+        List<String> classNumList = classNumDao.filter(); // List<String> に変更
 
         // リクエストにクラス番号のリストをセット
         request.setAttribute("classNumList", classNumList);

@@ -87,15 +87,11 @@ select {
 
 <div class="container">
 
-
 	<div class="content">
 
 		<%@include file="sideber.jsp"%>
 
 		<div class="main-content">
-
-
-
 
 			<h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;学生管理</h2>
 
@@ -103,16 +99,20 @@ select {
 				<a href="StudentCreate.action">新規登録</a>
 			</div>
 
-
 			<form action="StudentList.action" method="post">
 
 				<div class="container2">
 
 					<div class="form-group">
-						<label for="academic-year">入学年度</label> <select id="academic-year"
-							name="f1">
-							<option value="">----</option>
-							<!-- Add options here -->
+						<label for="academic-year">入学年度</label>
+						<select id="academic-year"name="f1">
+
+							<option value="0">----</option>
+
+							<c:forEach var="year" items="${ent_year_set}">
+								<option value="${year}">${year}</option>
+							</c:forEach>
+
 						</select>
 					</div>
 
