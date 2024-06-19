@@ -2,12 +2,19 @@ package student;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Student;
+import bean.Teacher;
+import dao.ClassNumDao;
+import dao.StudentDao;
 import tool.Action; // Actionクラスのインポート
+import util.Util;
 
 public class StudentListAction extends Action {
 
@@ -20,13 +27,17 @@ public class StudentListAction extends Action {
         String classNum = ""; // 入力されたクラス番号
         String isAttendStr = ""; // 入力された在クラグ
         int entYear = 0; // 入学年度
-//        boolean isAttend = false; // 在学フラグ
-//        List<Student> students = null; // 学生リスト
+        boolean isAttend = false; // 在学フラグ
+        List<Student> students = null; // 学生リスト
         LocalDate todaysDate = LocalDate.now(); // LocalDateインスタンスを取得
         int year = todaysDate.getYear(); // 現在の年を取得
-//        StudentDao sDao = new StudentDao(); // 学生Dao
-//        ClassNumDao ClassNumDao = new ClassNumDao(); // クラス番号Daoを初期化
-//        Map<String, String> errors = new HashMap<>(); // エラーメッセージ
+        StudentDao sDao = new StudentDao(); // 学生Dao
+        ClassNumDao classNumDao = new ClassNumDao(); // クラス番号Daoを初期化
+        Map<String, String> errors = new HashMap<>(); // エラーメッセージ
+
+        Teacher teacher = Util.getUser(req);
+        System.out.println(teacher.getSchool().getCd());
+        System.out.println(teacher.getSchool());
 
         entYearStr = req.getParameter("f1");
         classNum = req.getParameter("f2");
@@ -34,23 +45,23 @@ public class StudentListAction extends Action {
 
 //         DBからデータ取得
 //         ログインユーザーの学校コードをもとにクラス番号の一覧を取得
-//        List<String> list = ClassNumDao.filter(teacher.getSchool());
+        List<String> list = classNumDao.filter(teacher.getSchool());
 //
-//        if (entYear != 0 && !classNum.equals("0")) {
-//            // 入学年度とクラス番号を指定
-//            students = sDao.filter(teacher.getSchool(), entYear, classNum, isAttend);
-//        } else if (entYear != 0 && classNum.equals("0")) {
-//            // 入学年度のみ指定
-//            students = sDao.filter(teacher.getSchool(), entYear, isAttend);
-//        } else if ((entYear == 0 && classNum == null) || (entYear == 0 && classNum.equals("0"))) {
-//            // 指定なしの場合
-//            students = sDao.filter(teacher.getSchool(), isAttend);
-//        } else {
-//            errors.put("f1", "クラスを指定する場合は入学年度も指定してください");
-//            req.setAttribute("errors", errors);
-//            // 全学生情報を取得
-//            students = sDao.filter(teacher.getSchool(), isAttend);
-//        }
+        if (entYear != 0 && !classNum.equals("0")) {
+            // 入学年度とクラス番号を指定
+            students = sDao.filter(teacher.getSchool(), entYear, classNum, isAttend);
+        } else if (entYear != 0 && classNum.equals("0")) {
+            // 入学年度のみ指定
+            students = sDao.filter(teacher.getSchool(), entYear, isAttend);
+        } else if ((entYear == 0 && classNum == null) || (entYear == 0 && classNum.equals("0"))) {
+            // 指定なしの場合
+            students = sDao.filter(teacher.getSchool(), isAttend);
+        } else {
+            errors.put("f1", "クラスを指定する場合は入学年度も指定してください");
+            req.setAttribute("errors", errors);
+            // 全学生情報を取得
+            students = sDao.filter(teacher.getSchool(), isAttend);
+        }
 
 //         ビジネスロジック
         if (entYearStr != null) {
@@ -73,15 +84,15 @@ public class StudentListAction extends Action {
         //在学フラグが設定されていた場合
         if (isAttendStr != null) {
            // 在学フラグをセットする
-//           isAttend = true;
+           isAttend = true;
            // リクエストに在学フラグをセット
            req.setAttribute("f3", isAttendStr);
         }
 
         //リクエストに学生リストをセット
-//        req.setAttribute("students", students);
+        req.setAttribute("students", students);
         //リクエストにクラス番号をセット
-//        req.setAttribute("class_num_set", list);
+        req.setAttribute("class_num_set", list);
         req.setAttribute("ent_year_set", entYearSet);
 
         // FrontControllerを使用しているためreturn文でフォワードできる

@@ -117,9 +117,15 @@ select {
 					</div>
 
 					<div id="class" class="form-group">
-						<label>クラス</label> <select name="f2">
-							<option value="">----</option>
-							<!-- Add options here -->
+						<label>クラス</label>
+						<select name="f2">
+
+							<option value="0">----</option>
+
+							<c:forEach var="num" items="${class_num_set}">
+								<option value="${num}">${num}</option>
+							</c:forEach>
+
 						</select>
 					</div>
 

@@ -7,7 +7,6 @@ public class ClassNum implements java.io.Serializable {
     private School school;
     private String num; // コースIDを追加
 
-
     // ゲッターメソッド
     public School getSchool() {
         return school;
