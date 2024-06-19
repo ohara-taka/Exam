@@ -1,39 +1,28 @@
 package bean;
 
-import javax.security.auth.Subject;
+import java.io.Serializable;
 
-// Serializableインターフェースを実装してBeanを作成する
-public class Test implements java.io.Serializable {
+public class Test implements Serializable {
 
-
-
-
-    // DBの項目名と同じのprivateなフィールドを定義
-    private Student student;
+    private String studentNo;
     private String classNum;
-    private Subject subject;
-    private School school;
+    private String subjectCd;
+    private String schoolCd;
     private int no;
     private int point;
 
-
-
-
-
-
-
     // ゲッターメソッド
-    public Student getStudent() {
-        return student;
+    public String getStudentNo() {
+        return studentNo;
     }
     public String getClassNum() {
         return classNum;
     }
-    public Subject getSubject() {
-        return subject;
+    public String getSubjectCd() {
+        return subjectCd;
     }
-    public School getSchool() {
-        return school;
+    public String getSchoolCd() {
+        return schoolCd;
     }
     public int getNo() {
         return no;
@@ -42,22 +31,18 @@ public class Test implements java.io.Serializable {
         return point;
     }
 
-
-
-
-
     // セッターメソッド
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentNo(String studentNo) {
+        this.studentNo = studentNo;
     }
     public void setClassNum(String classNum) {
         this.classNum = classNum;
     }
-    public void setSubject(Subject subject) {
-        this.subject = subject;
+    public void setSubjectCd(String subjectCd) {
+        this.subjectCd = subjectCd;
     }
-    public void setSchool(School school) {
-        this.school = school;
+    public void setSchoolCd(String schoolCd) {
+        this.schoolCd = schoolCd;
     }
     public void setNo(int no) {
         this.no = no;
@@ -66,9 +51,4 @@ public class Test implements java.io.Serializable {
         this.point = point;
     }
 }
-
-
-
-
-
 
