@@ -19,6 +19,7 @@ public class kensho_you extends HttpServlet {
         if (teacher != null) {
             // セッションから取得したTeacherオブジェクトを使って何かを行う
             response.getWriter().println("Hello " + teacher.getName());
+            response.getWriter().println(teacher.getSchool().getCd());
         } else {
             response.getWriter().println("Teacher not found in session");
         }
