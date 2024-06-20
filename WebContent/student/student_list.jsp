@@ -154,18 +154,30 @@ select {
 					<th>在学中</th>
 				</tr>
 
-				<!-- StudentAll.javaからstudentが送られてきているので、
+				<!--StudentAll.javaからstudentが送られてきているので、
 				１件ずつstudentに取り出して表示している。 -->
-<!--  			<c:forEach var="student" items="${student}">
+				<c:forEach var="student" items="${students}">
 					<tr>
 						<td>${student.entYear}</td>
 						<td>${student.no}</td>
 						<td>${student.name}</td>
 						<td>${student.classNum}</td>
+
+						<td>
+							<c:choose>
+								<c:when test="${student.isAttend()}">
+									○
+								</c:when>
+								<c:otherwise>
+									×
+								</c:otherwise>
+							</c:choose>
+						</td>
+
 						<td><a href="StudentUpdate.action">変更</a></td>
 
 					</tr>
-				</c:forEach>-->
+				</c:forEach>
 			</table>
 
 			<div>

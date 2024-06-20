@@ -23,9 +23,11 @@ public class StudentListAction extends Action {
 //        HttpSession session = req.getSession(); // セッション
 //        Teacher teacher = (Teacher)session.getAttribute("user");
 
-        String entYearStr = ""; // 入力された学年度
-        String classNum = ""; // 入力されたクラス番号
-        String isAttendStr = ""; // 入力された在クラグ
+        String entYearStr = req.getParameter("f1");
+        String classNum = req.getParameter("f2");
+        String isAttendStr = req.getParameter("f3");
+
+
         int entYear = 0; // 入学年度
         boolean isAttend = false; // 在学フラグ
         List<Student> students = null; // 学生リスト
@@ -36,12 +38,19 @@ public class StudentListAction extends Action {
         Map<String, String> errors = new HashMap<>(); // エラーメッセージ
 
         Teacher teacher = Util.getUser(req);
-        System.out.println(teacher.getSchool().getCd());
-        System.out.println(teacher.getSchool());
 
-        entYearStr = req.getParameter("f1");
-        classNum = req.getParameter("f2");
-        isAttendStr = req.getParameter("f3");
+
+        //在学フラグが設定されていた場合
+        if (isAttendStr != null) {
+           // 在学フラグをセットする
+           isAttend = true;
+        }
+
+//      ビジネスロジック
+	     if (entYearStr != null) {
+	         // 数値に変換
+	         entYear = Integer.parseInt(entYearStr);
+	     }
 
 //         DBからデータ取得
 //         ログインユーザーの学校コードをもとにクラス番号の一覧を取得
@@ -63,16 +72,11 @@ public class StudentListAction extends Action {
             students = sDao.filter(teacher.getSchool(), isAttend);
         }
 
-//         ビジネスロジック
-        if (entYearStr != null) {
-            // 数値に変換
-            entYear = Integer.parseInt(entYearStr);
-        }
-//
+
         // リストを初期化
         List<Integer> entYearSet = new ArrayList<>();
         // 10年前から1年後まで年をリストに追加
-        for (int i = year - 10; i < year + 1; i++) {
+        for (int i = year - 10; i <= year + 1; i++) {
             entYearSet.add(i);
         }
 
@@ -80,14 +84,8 @@ public class StudentListAction extends Action {
         //リクエストに入学年度をセット
         req.setAttribute("f1", entYear);
         req.setAttribute("f2", classNum);
-
-        //在学フラグが設定されていた場合
-        if (isAttendStr != null) {
-           // 在学フラグをセットする
-           isAttend = true;
-           // リクエストに在学フラグをセット
-           req.setAttribute("f3", isAttendStr);
-        }
+        // リクエストに在学フラグをセット
+        req.setAttribute("f3", isAttendStr);
 
         //リクエストに学生リストをセット
         req.setAttribute("students", students);
