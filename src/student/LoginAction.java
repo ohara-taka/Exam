@@ -39,9 +39,9 @@ public class LoginAction extends HttpServlet {
                     // ログイン成功後に menu.jsp にリダイレクト
                     response.sendRedirect(request.getContextPath() + "/student/menu.jsp");
                 } else {
-                    message = "IDまたはパスワードが正しくありません";
+                    message = "ログインに失敗しました。IDまたはパスワードが正しくありません";
                     request.setAttribute("message", message);
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    request.getRequestDispatcher("/student/login.jsp").forward(request, response);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -52,7 +52,7 @@ public class LoginAction extends HttpServlet {
         } else {
             message = "IDとパスワードを入力してください";
             request.setAttribute("message", message);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("/student/login.jsp").forward(request, response);
         }
     }
 }
