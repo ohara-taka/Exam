@@ -104,34 +104,33 @@ select {
 				<div class="container2">
 
 					<div class="form-group">
-						<label for="academic-year">入学年度</label>
-						<select id="academic-year"name="f1">
+						<label for="academic-year">入学年度</label> <select id="academic-year"
+							name="f1">
 
 							<option value="0">----</option>
 
 							<c:forEach var="year" items="${ent_year_set}">
-								<option value="${year}">${year}</option>
+								<option value="${year}" <c:if test="${year==f1}">selected</c:if>>${year}</option>
 							</c:forEach>
 
 						</select>
 					</div>
 
 					<div id="class" class="form-group">
-						<label>クラス</label>
-						<select name="f2">
+						<label>クラス</label> <select name="f2">
 
 							<option value="0">----</option>
 
 							<c:forEach var="num" items="${class_num_set}">
-								<option value="${num}">${num}</option>
+								<option value="${num}" <c:if test="${num==f2}">selected</c:if>>${num}</option>
 							</c:forEach>
 
 						</select>
 					</div>
 
 					<div class="checkbox-group">
-						<input type="checkbox" id="in-school" name="f3"> <label
-							for="in-school">在学中</label>
+						<input type="checkbox" id="in-school" name="f3" <c:if test="${!empty f3}">checked</c:if>>
+						<label for="in-school">在学中</label>
 					</div>
 
 					<button type=submit>絞り込み</button>
@@ -141,48 +140,49 @@ select {
 			</form>
 
 
-			<div>
-				<p>検索結果件数 :</p>
-			</div>
+			<c:choose>
+				<c:when test="${students.size()>0}">
 
-			<table>
-				<tr>
-					<th>入学年度</th>
-					<th>学生番号</th>
-					<th>氏名</th>
-					<th>クラス</th>
-					<th>在学中</th>
-				</tr>
+					<div>検索結果件数 :${students.size()}件</div>
 
-				<!--StudentAll.javaからstudentが送られてきているので、
+					<table>
+						<tr>
+							<th>入学年度</th>
+							<th>学生番号</th>
+							<th>氏名</th>
+							<th>クラス</th>
+							<th>在学中</th>
+						</tr>
+
+						<!--StudentAll.javaからstudentが送られてきているので、
 				１件ずつstudentに取り出して表示している。 -->
-				<c:forEach var="student" items="${students}">
-					<tr>
-						<td>${student.entYear}</td>
-						<td>${student.no}</td>
-						<td>${student.name}</td>
-						<td>${student.classNum}</td>
+						<c:forEach var="student" items="${students}">
+							<tr>
+								<td>${student.entYear}</td>
+								<td>${student.no}</td>
+								<td>${student.name}</td>
+								<td>${student.classNum}</td>
 
-						<td>
-							<c:choose>
-								<c:when test="${student.isAttend()}">
+								<td><c:choose>
+										<c:when test="${student.isAttend()}">
 									○
 								</c:when>
-								<c:otherwise>
+										<c:otherwise>
 									×
 								</c:otherwise>
-							</c:choose>
-						</td>
+									</c:choose></td>
 
-						<td><a href="StudentUpdate.action">変更</a></td>
+								<td><a href="StudentUpdate.action">変更</a></td>
 
-					</tr>
-				</c:forEach>
-			</table>
+							</tr>
+						</c:forEach>
+					</table>
 
-			<div>
-				<p>学生情報が存在しませんでした</p>
-			</div>
+				</c:when>
+				<c:otherwise>
+					<div>学生情報が存在しませんでした</div>
+				</c:otherwise>
+			</c:choose>
 
 		</div>
 	</div>
