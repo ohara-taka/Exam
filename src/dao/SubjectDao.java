@@ -170,7 +170,7 @@ public class SubjectDao extends Dao {
             "UPDATE subject SET name = ? WHERE cd = ? AND school_cd = ?");
         st.setString(1, subject.getName());
         st.setString(2, subject.getCd());
-        st.setString(3, subject.getSchool().getCd());
+        st.setString(3, subject.getSchool().getCd()); // 学校コードを取得
 
         int result = st.executeUpdate();
 

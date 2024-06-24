@@ -47,5 +47,3 @@
 </div>
 
 <%@ include file="../footer.jsp" %> <!-- フッターをインクルード -->
-</body>
-</html>

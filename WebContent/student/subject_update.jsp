@@ -13,7 +13,7 @@
         <div class="main-content">
             <div class="form-container">
                 <h1 class="form-title">科目情報変更</h1>
-                <form>
+                <form action="${pageContext.request.contextPath}/subject/update" method="post">
                     <div class="form-group">
                         <label for="subject-code">科目コード</label>
                         <input type="text" id="subject-code" name="cd" value="${subject.cd}" placeholder="科目コードを入力してください">

@@ -35,8 +35,6 @@ main {
 
     display: flex;
 
-    flex-direction: column;
-
     height: 100%;
 
     width: 100%;
@@ -245,3 +243,23 @@ footer p {
     line-height: 1.5;
 
 }
+
+.student-info-registration {
+            background-color: lightgray;
+        }
+        .registration-complete {
+            text-align: center;
+            background-color: green;
+            color: black; /* 文字色を黒に設定 */
+        }
+        .student-links {
+            display: inline; /* インライン要素として表示 */
+        }
+        .student-links a:first-child {
+            margin-right: 6ch; /* 最初のリンクに6文字分のスペースを追加 */
+        }
+
+        .main-subject-updatedone-box {
+        	display: flex;
+  			flex-direction: column;
+        }
