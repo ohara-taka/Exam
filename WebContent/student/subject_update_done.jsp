@@ -16,7 +16,7 @@
 <main class="main-content">
 
 <div class="main-subject-updatedone-box">
-    <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;科目情報登録</h2>
+    <div class="subject-title-style">科目情報登録</div>
     <p class="registration-complete">登録が完了しました</p>
 
     <!-- 4行のスペースを追加 -->

@@ -12,7 +12,7 @@
         <%@include file="sideber.jsp" %>
         <div class="main-content">
             <div class="form-container">
-                <h1 class="form-title">科目情報変更</h1>
+                <div class="subject-title-style">科目情報変更</div>
                 <form action="${pageContext.request.contextPath}/subject/update" method="post">
                     <div class="form-group">
                         <label for="subject-code">科目コード</label>
