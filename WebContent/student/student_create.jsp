@@ -53,7 +53,7 @@
 
             <div class="main-content">
                 <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;学生情報登録</h2>
-                <form action="/" method="get">
+                <form action="StudentCreateExecute.action" method="get">
                     <label for="ent_year">入学年度</label><br>
                     <select id="ent_year" name="ent_year">
                     	<option value="ent_year"disabled selected>--------</option>
@@ -83,9 +83,10 @@
                     <!-- java作成次第画面遷移 -->
                     <button type="submit" name="end">登録して終了</button><br>
 
-                    <!-- java作成次第画面遷移 -->
-                    <a href="StudentListAction">戻る</a>
                 </form>
+
+                <!-- java作成次第画面遷移 -->
+                <a href="StudentList.action">戻る</a>
             </div>
         </div>
     </div>
