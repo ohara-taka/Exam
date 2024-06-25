@@ -263,3 +263,11 @@ footer p {
         	display: flex;
   			flex-direction: column;
         }
+
+.subject-title-style {
+	background-color: lightgray;
+	text-align: left;
+	font-size: 20px;
+	padding-left: 2ch;
+	margin-bottom: 6px;
+}

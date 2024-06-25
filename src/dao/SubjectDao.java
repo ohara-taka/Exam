@@ -85,14 +85,17 @@ public class SubjectDao extends Dao {
 
     public boolean save(Subject subject) throws Exception {
         Connection con = getConnection();
+        System.out.println("Database connection established");
 
         PreparedStatement st = con.prepareStatement(
-            "INSERT INTO subject (subject_cd, subject_name, school_name) VALUES (?, ?, ?)");
-        st.setString(1, subject.getCd());
-        st.setString(2, subject.getName());
-        st.setString(3, subject.getSchool().getCd());
+            "INSERT INTO subject (SCHOOL_CD, CD, NAME) VALUES (?, ?, ?)");
+        st.setString(1, subject.getSchool().getCd());
+        st.setString(2, subject.getCd());
+        st.setString(3, subject.getName());
+        System.out.println("Prepared SQL statement: " + st.toString());
 
         int result = st.executeUpdate();
+        System.out.println("Execute update result: " + result);
 
         st.close();
         con.close();
@@ -171,6 +174,22 @@ public class SubjectDao extends Dao {
         st.setString(1, subject.getName());
         st.setString(2, subject.getCd());
         st.setString(3, subject.getSchool().getCd()); // 学校コードを取得
+
+        int result = st.executeUpdate();
+
+        st.close();
+        con.close();
+
+        return result > 0;
+    }
+
+ // Subject を削除するメソッド
+    public boolean deleteByCd(String cd) throws Exception {
+        Connection con = getConnection();
+
+        PreparedStatement st = con.prepareStatement(
+            "DELETE FROM subject WHERE cd = ?");
+        st.setString(1, cd);
 
         int result = st.executeUpdate();
 

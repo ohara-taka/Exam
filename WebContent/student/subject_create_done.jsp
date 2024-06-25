@@ -14,26 +14,9 @@
 <%@include file="sideber.jsp" %>
 
 <main class="main-content">
-<head>
-    <style>
-        .student-info-registration {
-            background-color: lightgray;
-        }
-        .registration-complete {
-            text-align: center;
-            background-color: green;
-            color: black; /* 文字色を黒に設定 */
-        }
-        .student-links {
-            display: inline; /* インライン要素として表示 */
-        }
-        .student-links a:first-child {
-            margin-right: 6ch; /* 最初のリンクに6文字分のスペースを追加 */
-        }
-    </style>
-</head>
-<body>
-    <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;科目情報登録</h2>
+
+<div class="main-subject-updatedone-box">
+    <div class="subject-title-style">&nbsp;&nbsp;&nbsp;科目情報登録</div>
     <p class="registration-complete">登録が完了しました</p>
 
     <!-- 4行のスペースを追加 -->
@@ -41,24 +24,13 @@
 
     <!-- Topページへ戻る為のリンクを下に表示 -->
     <div class="student-links">
-        <a href="/Exam/student/student_create.jsp">戻る</a>
-        <a href="/Exam/student/#">科目一覧</a>
+        <a href="SubjectList.action">科目一覧</a>
     </div>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
+    </div>
 
 </main>
 </div>
 </div>
 
 <%@include file="../footer.jsp" %>
+
