@@ -1,8 +1,9 @@
-<title>得点管理システム</title>
-<link rel="stylesheet" href="../css/menu-styles.css">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+	<title>科目削除</title>
+    <link rel="stylesheet" href="../css/menu-styles.css">
+    <link rel="stylesheet" type="text/css" href="../css/subject.css">
     <%@include file="../header.jsp" %>
 
 
@@ -13,9 +14,9 @@
 
 <%@include file="sideber.jsp" %>
 
-<main class="main-content">
+<div class="main-content">
 
-<div class="main-subject-updatedone-box">
+<section class="subject-management-sub">
     <div class="subject-title-style">科目情報登録</div>
     <p class="registration-complete">登録が完了しました</p>
 
@@ -26,9 +27,9 @@
     <div class="student-links">
         <a href="SubjectList.action">科目一覧</a>
     </div>
-    </div>
+    </section>
 
-</main>
+</div>
 </div>
 </div>
 

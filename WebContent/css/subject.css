@@ -2,10 +2,8 @@
 
 .subject-management-sub {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
+
+    width: 95%;
     max-width: 800px;
 }
 
@@ -52,3 +50,73 @@ border-bottom: 2px solid #ccc;
 }
 
 
+
+.form-container {
+    background-color: white;
+    padding: 30px; /* 50% increase from 20px */
+    border-radius: 12px; /* 50% increase from 8px */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* 50% increase from 10px */
+    width: 450px; /* 50% increase from 300px */
+}
+
+.form-title {
+    font-size: 27px; /* 50% increase from 18px */
+    margin-bottom: 30px; /* 50% increase from 20px */
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 22.5px; /* 50% increase from 15px */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7.5px; /* 50% increase from 5px */
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px; /* 50% increase from 8px */
+    box-sizing: border-box;
+    border: 1.5px solid #ccc; /* 50% increase from 1px */
+    border-radius: 6px; /* 50% increase from 4px */
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-buttons button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 30px; /* 50% increase from 10px 20px */
+    border-radius: 6px; /* 50% increase from 4px */
+    cursor: pointer;
+    font-size: 18px; /* Increased to make button text larger */
+}
+
+.form-buttonsr {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-buttonsr button {
+    background-color: #ff2222;
+    color: white;
+    border: none;
+    padding: 15px 30px; /* 50% increase from 10px 20px */
+    border-radius: 6px; /* 50% increase from 4px */
+    cursor: pointer;
+    font-size: 18px; /* Increased to make button text larger */
+}
+
+.form-buttons button[type="button"] {
+    background-color: #6c757d;
+}
+
+.form-buttons button:hover {
+    opacity: 0.9;
+}
