@@ -1,33 +1,24 @@
 package student;
 
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.ClassNum;
 import bean.Subject;
 import bean.Test;
-import dao.ClassNumDao;
 import dao.SubjectDao;
 import dao.TestDao;
 import tool.Action;
 
+
+
 public class TestRegistAction extends Action {
-	public String execute(
-		HttpServletRequest request, HttpServletResponse response
-	) throws Exception {
-		//クラス呼び出し
-		ClassNumDao classNumDao = new ClassNumDao();
-	    List<ClassNum> classNumList = null;
+	public String execute(HttpServletRequest req, HttpServletResponse response)throws Exception {
 
-	    try {
-	    	classNumList = classNumDao.classNumAll();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
 
-	    request.setAttribute("classNumList", classNumList);
+
 
 	    //subject呼び出し
 	    SubjectDao subjectDao = new SubjectDao();
@@ -39,7 +30,7 @@ public class TestRegistAction extends Action {
 	        e.printStackTrace();
 	    }
 
-	    request.setAttribute("subjectList", subjectList);
+	    req.setAttribute("subjectList", subjectList);
 
 
 	  //テスト呼び出し
@@ -52,7 +43,7 @@ public class TestRegistAction extends Action {
 		        e.printStackTrace();
 		    }
 
-		    request.setAttribute("testList", testList);
+		    req.setAttribute("testList", testList);
 
 
 

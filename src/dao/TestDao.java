@@ -16,7 +16,7 @@ public class TestDao extends Dao {
     // Get method
     public Test get(String studentNo, String subjectCd, String schoolCd, int no) {
         Test test = null;
-        String sql = baseSql + " WHERE STUDENT_NO = ? AND SUBJECT_CD = ? AND SCHOOL_CD = ? AND NO = ?";
+        String sql = baseSql + " WHERE student_no = ? AND subject_cd = ? AND school_cd = ? AND no = ?";
 
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -28,48 +28,45 @@ public class TestDao extends Dao {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     test = new Test();
-                    test.setStudentNo(rs.getString("STUDENT_NO"));
-                    test.setClassNum(rs.getString("CLASS_NUM"));
-                    test.setSubjectCd(rs.getString("SUBJECT_CD"));
-                    test.setSchoolCd(rs.getString("SCHOOL_CD"));
-                    test.setNo(rs.getInt("NO"));
-                    test.setPoint(rs.getInt("POINT"));
+                    test.setStudentNo(rs.getString("student_no"));
+                    test.setClassNum(rs.getString("classNum"));
+                    test.setSubjectCd(rs.getString("subject_cd"));
+                    test.setSchoolCd(rs.getString("school_cd"));
+                    test.setNo(rs.getInt("no"));
+                    test.setPoint(rs.getInt("point"));
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        catch (Exception e) {
             e.printStackTrace();
         }
         return test;
     }
- // 全てのレコードを取得するメソッド
-    public List<Test> testAll() {
-        List<Test> tests = new ArrayList<>();
-        String sql = baseSql;  // 既に定義されているベースのSQLを使用
+
+    // 全てのレコードを取得するメソッド
+    public List<Test> testAll() throws Exception {
+        List<Test> testList = new ArrayList<>();
+        String sql = "SELECT * FROM test";
 
         try (Connection con = getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    Test test = new Test();
-                    test.setStudentNo(rs.getString("STUDENT_NO"));
-                    test.setClassNum(rs.getString("CLASS_NUM"));
-                    test.setSubjectCd(rs.getString("SUBJECT_CD"));
-                    test.setSchoolCd(rs.getString("SCHOOL_CD"));
-                    test.setNo(rs.getInt("NO"));
-                    test.setPoint(rs.getInt("POINT")); // テストテーブルの構造に応じて設定
-                    tests.add(test);
-                }
+            while (rs.next()) {
+                Test test = new Test();
+                test.setStudentNo(rs.getString("student_no"));
+                test.setClassNum(rs.getString("class_num"));
+                test.setSubjectCd(rs.getString("subject_cd"));
+                test.setSchoolCd(rs.getString("school_cd"));
+                test.setNo(rs.getInt("no"));
+                test.setPoint(rs.getInt("point"));
+                testList.add(test);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+            throw new Exception("Database error occurred: " + e.getMessage(), e);
         }
-        return tests;
+
+        return testList;
     }
 
     // Post filter method
@@ -78,18 +75,15 @@ public class TestDao extends Dao {
         try {
             while (rSet.next()) {
                 Test test = new Test();
-                test.setStudentNo(rSet.getString("STUDENT_NO"));
-                test.setClassNum(rSet.getString("CLASS_NUM"));
-                test.setSubjectCd(rSet.getString("SUBJECT_CD"));
-                test.setSchoolCd(rSet.getString("SCHOOL_CD"));
-                test.setNo(rSet.getInt("NO"));
-                test.setPoint(rSet.getInt("POINT"));
+                test.setStudentNo(rSet.getString("student_no"));
+                test.setClassNum(rSet.getString("class_num"));
+                test.setSubjectCd(rSet.getString("subject_cd"));
+                test.setSchoolCd(rSet.getString("school_cd"));
+                test.setNo(rSet.getInt("no"));
+                test.setPoint(rSet.getInt("point"));
                 tests.add(test);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        catch (Exception e) {
             e.printStackTrace();
         }
         return tests;
@@ -98,7 +92,7 @@ public class TestDao extends Dao {
     // Filter method
     public List<Test> filter(int entYear, String classNum, String subjectCd, int num, String schoolCd) {
         List<Test> tests = new ArrayList<>();
-        String sql = baseSql + " WHERE ent_year = ? AND CLASS_NUM = ? AND SUBJECT_CD = ? AND NO = ? AND SCHOOL_CD = ?";
+        String sql = baseSql + " WHERE ent_year = ? AND class_num = ? AND subject_cd = ? AND no = ? AND school_cd = ?";
 
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -111,21 +105,18 @@ public class TestDao extends Dao {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Test test = new Test();
-                    test.setStudentNo(rs.getString("STUDENT_NO"));
-                    test.setClassNum(rs.getString("CLASS_NUM"));
-                    test.setSubjectCd(rs.getString("SUBJECT_CD"));
-                    test.setSchoolCd(rs.getString("SCHOOL_CD"));
-                    test.setNo(rs.getInt("NO"));
-                    test.setPoint(rs.getInt("POINT"));
+                    test.setStudentNo(rs.getString("student_no"));
+                    test.setClassNum(rs.getString("class_num"));
+                    test.setSubjectCd(rs.getString("subject_cd"));
+                    test.setSchoolCd(rs.getString("school_cd"));
+                    test.setNo(rs.getInt("no"));
+                    test.setPoint(rs.getInt("point"));
                     tests.add(test);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (Exception e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
+        }
         return tests;
     }
 
@@ -140,17 +131,13 @@ public class TestDao extends Dao {
             e.printStackTrace();
             result = false;
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
         return result;
     }
 
     // Save method for single test with connection
     public boolean save(Test test, Connection connection) {
         boolean result = false;
-        String sql = "INSERT INTO test (STUDENT_NO, CLASS_NUM, SUBJECT_CD, SCHOOL_CD, NO, POINT) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO test (student_no, class_num, subject_cd, school_cd, no, point) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, test.getStudentNo());
@@ -169,7 +156,7 @@ public class TestDao extends Dao {
     // Delete method for list
     public boolean delete(List<Test> list) {
         boolean result = true;
-        try (Connection con = getConnection();) {
+        try (Connection con = getConnection()) {
             for (Test test : list) {
                 result &= delete(test, con);
             }
@@ -177,16 +164,13 @@ public class TestDao extends Dao {
             e.printStackTrace();
             result = false;
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
         return result;
     }
 
     // Delete method for single test with connection
     public boolean delete(Test test, Connection connection) {
         boolean result = false;
-        String sql = "DELETE FROM test WHERE STUDENT_NO = ? AND SUBJECT_CD = ? AND SCHOOL_CD = ? AND NO = ?";
+        String sql = "DELETE FROM test WHERE student_no = ? AND subject_cd = ? AND school_cd = ? AND no = ?";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, test.getStudentNo());
@@ -197,10 +181,6 @@ public class TestDao extends Dao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
         return result;
     }
 }
-
