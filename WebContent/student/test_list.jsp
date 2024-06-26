@@ -19,7 +19,7 @@ body {
 	width: 95%;
 	margin-left: auto;
 	margin-right: auto;
-}
+} 
 
 .container2 {
 	display: flex;
