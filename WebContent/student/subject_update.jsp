@@ -3,15 +3,15 @@
 
 <title>科目情報変更</title>
 <link rel="stylesheet" href="../css/menu-styles.css">
-<link rel="stylesheet" href="../css/sub_create.css">
-<%@include file="../header.jsp" %>
+<link rel="stylesheet" type="text/css" href="../css/subject.css">
+<%@ include file="../header.jsp" %>
 
-<body>
 <div class="container">
     <div class="content">
-        <%@include file="sideber.jsp" %>
+        <%@ include file="sideber.jsp" %>
         <div class="main-content">
-            <div class="form-container">
+        	<section class="subject-management-sub">
+
                 <div class="subject-title-style">科目情報変更</div>
                 <form action="${pageContext.request.contextPath}/subject/update" method="post">
                     <div class="form-group">
@@ -24,13 +24,15 @@
                     </div>
                     <div class="form-buttons">
                         <button type="submit">変更</button>
-                        <button type="button" onclick="history.back();">戻る</button>
                     </div>
+                    	<br>
+                        <a href="javascript:history.back();">戻る</a>
+
                 </form>
+            </section>
             </div>
-        </div>
+            </div>
     </div>
-</div>
-</body>
+
 
 <%@include file="../footer.jsp" %>

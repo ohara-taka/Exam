@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>得点管理システム</title>
+	<title>科目管理</title>
     <link rel="stylesheet" href="../css/menu-styles.css">
     <link rel="stylesheet" type="text/css" href="../css/subject.css">
-</head>
-<body>
+
 
 <%@ include file="../header.jsp" %> <!-- ヘッダーをインクルード -->
 
@@ -16,7 +12,6 @@
     <div class="content">
         <%@ include file="sideber.jsp" %> <!-- サイドバーをインクルード -->
         <div class="main-content">
-            <main>
                 <section class="subject-management-sub">
                     <div class="subject-title-style">科目管理</div>
                     <a href="SubjectCreate.action" class="add-new">科目新規追加</a> <!-- 科目新規追加ボタン -->
@@ -40,8 +35,7 @@
                             </c:forEach>
                         </tbody>
                     </table>
-                </section>
-            </main>
+               </section>
         </div>
     </div>
 </div>

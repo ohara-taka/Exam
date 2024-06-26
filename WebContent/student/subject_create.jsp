@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../header.jsp" %>
+
 <title>科目情報登録</title>
 <link rel="stylesheet" href="../css/menu-styles.css">
-<link rel="stylesheet" href="../css/sub_create.css">
+<link rel="stylesheet" type="text/css" href="../css/subject.css">
 
-<body>
+<%@include file="../header.jsp" %>
+
 <div class="container">
 <div class="content">
 <%@include file="sideber.jsp" %>
 
 <div class="main-content">
-    <div class="form-container">
+    <div class="subject-management-sub">
         <div class="subject-title-style">科目情報登録</div>
         <form action="${pageContext.request.contextPath}/subject/create" method="post">
             <div class="form-group">
@@ -27,8 +28,10 @@
             </div>
             <div class="form-buttons">
                 <button type="submit">登録</button>
-                <button type="button" onclick="history.back();">戻る</button>
             </div>
+            	<br>
+                <a href="javascript:history.back();">戻る</a>
+
         </form>
     </div>
 </div>
