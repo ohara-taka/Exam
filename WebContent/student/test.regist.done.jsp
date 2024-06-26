@@ -1,8 +1,9 @@
-<title>得点管理システム</title>
-<link rel="stylesheet" href="../css/menu-styles.css">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+	<title>成績管理</title>
+    <link rel="stylesheet" href="../css/menu-styles.css">
+    <link rel="stylesheet" type="text/css" href="../css/subject.css">
     <%@include file="../header.jsp" %>
 
 
@@ -13,27 +14,10 @@
 
 <%@include file="sideber.jsp" %>
 
-<main class="main-content">
-<head>
-    <style>
-        .student-info-registration {
-            background-color: lightgray;
-        }
-        .registration-complete {
-            text-align: center;
-            background-color: green;
-            color: black; /* 文字色を黒に設定 */
-        }
-        .student-links {
-            display: inline; /* インライン要素として表示 */
-        }
-        .student-links a:first-child {
-            margin-right: 6ch; /* 最初のリンクに6文字分のスペースを追加 */
-        }
-    </style>
-</head>
-<body>
-    <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;成績管理</h2>
+<div class="main-content">
+
+<section class="subject-management-sub">
+    <h2 class="subject-title-style">成績管理</h2>
     <p class="registration-complete">登録が完了しました</p>
 
     <!-- 4行のスペースを追加 -->
@@ -41,22 +25,13 @@
 
     <!-- Topページへ戻る為のリンクを下に表示 -->
     <div class="student-links">
+    	        <a href="/Exam/student/#">成績参照</a>
         <a href="/Exam/student/student_create.jsp">戻る</a>
-        <a href="/Exam/student/#">成績参照</a>
+
     </div>
-</body>
-</html>
+    </section>
 
-
-
-
-
-
-
-
-
-
-</main>
+</div>
 </div>
 </div>
 

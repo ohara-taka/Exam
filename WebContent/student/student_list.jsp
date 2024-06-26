@@ -62,17 +62,6 @@ button:hover {
 	margin-bottom: 10px;
 }
 
-table {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between; /* 列の間隔を均等に配置 */
-}
-
-th, td {
-	flex: 1; /* 列の幅を均等にする */
-	padding: 8px; /* セルの余白を調整 */
-}
-
 select {
 	border: 1px solid #ccc; /* 薄い枠の色 */
 	border-radius: 5px; /* 角を丸くする */
@@ -145,7 +134,7 @@ select {
 
 					<div>検索結果件数 :${students.size()}件</div>
 
-					<table>
+					<table class="student-custom-table">
 						<tr>
 							<th>入学年度</th>
 							<th>学生番号</th>

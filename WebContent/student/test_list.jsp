@@ -65,16 +65,7 @@ button:hover {
 	background-color: #5a6268;
 }
 
-table {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between; /* 列の間隔を均等に配置 */
-}
 
-th, td {
-	flex: 1; /* 列の幅を均等にする */
-	padding: 8px; /* セルの余白を調整 */
-}
 
 select {
 	border: 1px solid #ccc; /* 薄い枠の色 */
