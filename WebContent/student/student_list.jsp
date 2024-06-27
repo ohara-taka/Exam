@@ -118,8 +118,9 @@ select {
 					</div>
 
 					<div class="checkbox-group">
-						<input type="checkbox" id="in-school" name="f3" <c:if test="${!empty f3}">checked</c:if>>
-						<label for="in-school">在学中</label>
+						<input type="checkbox" id="in-school" name="f3"
+							<c:if test="${!empty f3}">checked</c:if>> <label
+							for="in-school">在学中</label>
 					</div>
 
 					<button type=submit>絞り込み</button>
