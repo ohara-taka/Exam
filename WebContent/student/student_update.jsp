@@ -3,6 +3,7 @@
 <head>
  	<%@ page language="java" contentType="text/html; charset=UTF-8"
     	pageEncoding="UTF-8"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <title>得点管理システム</title>
     <link rel="stylesheet" href="../css/menu-styles.css">
     <%@ include file="../header.jsp" %>
@@ -23,6 +24,7 @@
             box-sizing: border-box; /* ボーダーとパディングを含めて計算 */
             padding: 5px; /* パディングを設定 */
             margin-bottom: 10px; /* 下に間隔を開ける */
+            border-radius: 5px; /* 角を丸くする */
         }
 
         /* フォーム全体のスタイル */
@@ -31,13 +33,25 @@
         }
 
         .student-info-registration{
-        	background-color:lightgray;
+        	background-color:blue
         }
 
     	.checkbox {
             display: flex;
             align-items: center;
     	}
+
+    	 button {
+        	border-radius: 5px; /* 角を丸くする */
+        	background-color: blue;
+        	color: white;
+        	margin-bottom: 10px; /* ボタンの下に間隔を開ける */
+        }
+
+    	.student-info-registration{
+        	background-color:lightgray;
+        }
+
     </style>
 </head>
 <body>
@@ -48,7 +62,7 @@
 
             <div class="main-content">
                 <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;学生情報変更</h2>
-                <form action="/" method="get">
+                <form action="StudentUpdateExecute.action" method="get">
                     <label for="ent_year">入学年度</label><br>
                     <input type="text" id="ent_year" name="ent_year" value="${ent_year}" readonly><br>
 
@@ -60,9 +74,9 @@
 
                     <label for="class_num">クラス</label><br>
                     <select id="class_num" name="class_num">
- 					<c:forEach var="student" items="${num}">
-            			<option value="${num}">${num}</option>
-        				</c:forEach>
+                        <c:forEach var="classNum" items="${classNumList}">
+                            <option value="${classNum}" <c:if test="${classNum==class_num}">selected</c:if>>${classNum}</option>
+                        </c:forEach>
                     </select><br>
 
 					<div class="checkbox">
@@ -72,10 +86,10 @@
 
                     <!-- java作成次第画面遷移 -->
                     <button type="submit" name="end">変更</button><br>
-
-                    <!-- java作成次第画面遷移 -->
-                    <a href="/">戻る</a>
                 </form>
+
+                <!-- java作成次第画面遷移 -->
+                <a href="javascript:history.back();">戻る</a>
             </div>
         </div>
     </div>
