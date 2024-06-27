@@ -76,7 +76,7 @@ public class StudentListAction extends Action {
         // リストを初期化
         List<Integer> entYearSet = new ArrayList<>();
         // 10年前から1年後まで年をリストに追加
-        for (int i = year - 10; i <= year + 1; i++) {
+        for (int i = year - 10; i <= year; i++) {
             entYearSet.add(i);
         }
 
