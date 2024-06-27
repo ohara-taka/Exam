@@ -30,7 +30,7 @@ try {
         if (rs.next()) {
 
 	    	//学生ビーンをインスタンス化して情報をセット
-	        school.setCd(rs.getString("NO"));
+	        school.setCd(rs.getString("CD"));
 	        school.setName(rs.getString("NAME"));;
 
         } else {

@@ -20,8 +20,6 @@ public class StudentUpdateAction extends Action {
     ) throws Exception {
 
         String studentNo = request.getParameter("no");
-        String classNum = request.getParameter("class_num");
-
 
         // セッションからTeacherオブジェクトを取得
 
@@ -38,21 +36,23 @@ public class StudentUpdateAction extends Action {
 
         List<String> classNumList = classNumDao.filter(teacher.getSchool()); // Schoolオブジェクトを渡さない
 
-//       List<Student> studentList = studentDao.postFilter(teacher.getSchool()); // Schoolオブジェクトを渡さない
 
         Student student = studentDao.get(studentNo); // Schoolオブジェクトを渡さない
+
 
         //レスポンス値をセット
         //リクエストに名前・クラスをセット
         request.setAttribute("name", student.getName());
-        request.setAttribute("class_num", classNum);
+        request.setAttribute("class_num", student.getClassNum());
 
 
         // リクエストにクラス番号のリストをセット
         request.setAttribute("classNumList", classNumList);
 
-        // JSPページにフォワードする
-        return "student_update.jsp";
+        request.getRequestDispatcher("student_update.jsp").forward(request, response);
+        return null;
+
     }
+
 }
 

@@ -70,12 +70,12 @@
                     <input type="text" id="no" name="no" value="${no}" readonly><br>
 
                     <label for="name">氏名</label><br>
-                    <input type="text" id="name" name="name" maxlength="30" value="${name}"><br>
+                    <input type="text" id="name" name="name" maxlength="30" value="${name}">${name}<br>
 
                     <label for="class_num">クラス</label><br>
                     <select id="class_num" name="class_num">
                         <c:forEach var="classNum" items="${classNumList}">
-                            <option value="${classNum}" <c:if test="${classNum==class_num}">selected</c:if>>${classNum}</option>
+                            <option value="${classNum}" <c:if test="${classNum == class_num}">selected</c:if>>${classNum}</option>
                         </c:forEach>
                     </select><br>
 
