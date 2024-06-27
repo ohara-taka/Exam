@@ -48,10 +48,10 @@ public class StudentCreateExecuteAction extends Action {
         }
 
         // isAttendをboolean型に変換
-        boolean isAttend = false;
-        if (isAttendStr != null && isAttendStr.equalsIgnoreCase("true")) {
-            isAttend = true;
-        }
+        boolean isAttend = true;
+//        if (isAttendStr != null && isAttendStr.equalsIgnoreCase("true")) {
+//            isAttend = true;
+//        }
 
         // schoolCdに基づいてSchoolオブジェクトを取得
         School school = teacher.getSchool();
