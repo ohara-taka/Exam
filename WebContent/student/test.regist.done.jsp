@@ -17,7 +17,7 @@
 <div class="main-content">
 
 <section class="subject-management-sub">
-    <h2 class="subject-title-style">成績管理</h2>
+    <div class="subject-title-style">成績管理</div>
     <p class="registration-complete">登録が完了しました</p>
 
     <!-- 4行のスペースを追加 -->

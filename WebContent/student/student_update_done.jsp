@@ -18,7 +18,7 @@
 
 <section class="subject-management-sub">
 
-    <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;学生情報変更</h2>
+    <div class="subject-title-style">&nbsp;&nbsp;&nbsp;学生情報変更</div>
     <p class="registration-complete">変更が完了しました</p>
 
     <!-- 4行のスペースを追加 -->

@@ -17,7 +17,7 @@
 <div class="main-content">
 
 <section class="subject-management-sub">
-    <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;学生情報登録</h2>
+    <div class="subject-title-style">&nbsp;&nbsp;&nbsp;学生情報登録</div>
     <p class="registration-complete">登録が完了しました</p>
 
     <!-- 4行のスペースを追加 -->
@@ -25,7 +25,7 @@
 
     <!-- Topページへ戻る為のリンクを下に表示 -->
     <div class="student-links">
-        <a href="/Exam/student/student_create.jsp">戻る</a>
+        <a href="javascript:history.back();">戻る</a>
         <a href="StudentList.action">学生一覧</a>
    </div>
     </section>
