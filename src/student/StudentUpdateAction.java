@@ -42,6 +42,8 @@ public class StudentUpdateAction extends Action {
 
         //レスポンス値をセット
         //リクエストに名前・クラスをセット
+        request.setAttribute("ent_year", student.getEntYear());
+        request.setAttribute("no", student.getNo());
         request.setAttribute("name", student.getName());
         request.setAttribute("class_num", student.getClassNum());
 
