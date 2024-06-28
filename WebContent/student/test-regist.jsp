@@ -36,8 +36,8 @@
 		                    int currentYear = java.time.Year.now().getValue();
 		                	for (int i = currentYear - 10; i <= currentYear + 10; i++) {
 		                        out.println("<option value=\"" + i + "\">" + i + "</option>");
-		                    }
-		                 %>
+		                    }%>
+ <c:if test="${year==f1}">selected</c:if>
 
 
 
@@ -47,8 +47,8 @@
                         <label for="class">クラス</label>
                         <select id="class">
                             <option value="">------</option>
-                            <c:forEach var="test" items="${testList}">
-                                <option value="${test.classNum}">${test.classNum}</option>
+                            <c:forEach var="num" items="${class_num_set}">
+                                <option value="${num}"> <c:if test="${num==f2}">selected</c:if>${num}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -57,7 +57,7 @@
                         <select name="subject" required>
                             <option value="">------</option>
                             <c:forEach var="subject" items="${subjectList}">
-                                <option value="${subject.cd}">${subject.cd}</option>
+                                <option value="${subject.cd}"><c:if test="${subject.cd==f3}">selected</c:if>${subject.cd}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -70,7 +70,7 @@
 		                	for (int i = TestNumber - 10; i <= TestNumber + 89; i++) {
 		                        out.println("<option value=\"" + i + "\">" + i + "</option>");
 		                    }
-		                 %>
+		                 %><c:if test="${num==f4}">selected</c:if>
                         </select>
                     </div>
                     <button type="submit">検索</button>
@@ -88,7 +88,7 @@
 							<th>回数</th>
 						</tr>
 
-						
+
 						<c:forEach var="student" items="${students}">
 							<tr>
 								<td>${student.entYear}</td>
