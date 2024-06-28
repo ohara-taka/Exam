@@ -68,8 +68,8 @@
                     <a>${ent_year}</a><br><br>
 
                     <label for="no">学生番号</label><br>
-                    <!-- <input type="text" id="no" name="no" value="${no}" readonly><br> -->
-                    <a>${no}</a><br><br>
+                    <input type="text" id="no" name="no" value="${no}" readonly><br>
+                    <!-- <a>${no}</a><br><br> -->
 
                     <label for="name">氏名</label><br>
                     <input type="text" id="name" name="name" maxlength="30" value="${name}"><br>
@@ -82,8 +82,8 @@
                     </select><br>
 
 					<div class="checkbox">
-	                    <label for="si_attend">在学中</label>
-	                    <input type="checkbox" id="si_attend" name="si_attend"><br>
+	                    <label for="is_attend">在学中</label>
+	                    <input type="checkbox" id="is_attend" name="is_attend" value="${isattend}" <c:if test="${isattend}">checked</c:if>><br>
                     </div>
 
                     <!-- java作成次第画面遷移 -->

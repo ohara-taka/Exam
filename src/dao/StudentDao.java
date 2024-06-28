@@ -352,4 +352,51 @@ public boolean save(Student student) throws Exception {
 }
 
 
+public boolean update(Student student) throws Exception {
+    // コネクションを確立
+    Connection connection = getConnection();
+    // プリペアードステートメント
+    PreparedStatement statement = null;
+    // 実行件数
+    int count = 0;
+
+    try {
+        // プリペアードステートメントにUPDATE文をセット
+        statement = connection.prepareStatement(
+            "UPDATE student SET name=?, class_num=?, is_attend=? WHERE no=?"
+        );
+        // プリペアードステートメントに値をバインド
+        statement.setString(1, student.getName());
+        statement.setString(2, student.getClassNum());
+        statement.setBoolean(3, student.isAttend());
+        statement.setString(4, student.getNo());
+
+        // プリペアードステートメントを実行
+        count = statement.executeUpdate();
+
+    } catch (Exception e) {
+        throw e;
+    } finally {
+        // プリペアードステートメントを閉じる
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException sqle) {
+                throw sqle;
+            }
+        }
+        // コネクションを閉じる
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException sqle) {
+                throw sqle;
+            }
+        }
+    }
+
+    return count > 0;
+}
+
+
 }

@@ -46,6 +46,7 @@ public class StudentUpdateAction extends Action {
         request.setAttribute("no", student.getNo());
         request.setAttribute("name", student.getName());
         request.setAttribute("class_num", student.getClassNum());
+        request.setAttribute("isattend", student.isAttend());
 
 
         // リクエストにクラス番号のリストをセット
