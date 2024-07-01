@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.School;
 import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDao;
@@ -27,35 +28,21 @@ public class TestRegistAction extends Action {
         String subject = req.getParameter("f3");
         String number = req.getParameter("f4");
 
-	    //subject呼び出し
-	    SubjectDao subjectDao = new SubjectDao();
-	    List<Subject> subjectList = null;
 
-	    try {
-	        subjectList = subjectDao.subjectAll();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-
-	    req.setAttribute("subjectList", subjectList);
-
+	    if (teacher != null) { // Teacherオブジェクトが存在する場合
+            School school = teacher.getSchool(); // TeacherからSchoolオブジェクトを取得
+            SubjectDao subjectDao = new SubjectDao(); // SubjectDaoのインスタンスを生成
+            List<Subject> subjectList = subjectDao.filter(school); // school_cdに基づいて科目をフィルタリング
+            req.setAttribute("subjectList", subjectList); // フィルタリングされた科目リストをリクエストに設定
+            req.setAttribute("schoolCd", school.getCd()); // Schoolのcdをリクエストに設定
+	}
 //      DBからデータ取得
 //      ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 	    List<String> list = classNumDao.filter(teacher.getSchool());
 
 
-//	  //テスト呼び出し
-//		TestDao testDao = new TestDao();
-//		    List<Test> testList = null;
-//
-//		    try {
-//		    	testList = testDao.testAll();
-//		    } catch (Exception e) {
-//		        e.printStackTrace();
-//		    }
-
         	req.setAttribute("class_num_set", list);
-//		    req.setAttribute("testList", testList);
+
 
         	  req.setAttribute("f1", entYear);
               req.setAttribute("f2", classNum);
@@ -67,4 +54,5 @@ public class TestRegistAction extends Action {
               return null; // 戻り値を追加
 
 	}
-}
+  }
+
