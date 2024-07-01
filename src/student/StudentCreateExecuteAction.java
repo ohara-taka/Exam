@@ -14,11 +14,9 @@ import tool.Action;
 import util.Util;
 
 public class StudentCreateExecuteAction extends Action {
-    @Override
-    public String execute(
-        HttpServletRequest request, HttpServletResponse response
-    ) throws ServletException, IOException {
 
+    @Override
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // ログインユーザーを取得
         Teacher teacher = Util.getUser(request);
 
@@ -58,6 +56,19 @@ public class StudentCreateExecuteAction extends Action {
             throw new ServletException("学校の取得中にエラーが発生しました。", e);
         }
 
+        // 学生番号の重複チェック
+        StudentDao studentDao = new StudentDao();
+        try {
+            Student existingStudent = studentDao.get(studentNo, school.getCd());
+            if (existingStudent != null) {
+                request.setAttribute("errorMessage", "学生番号が重複しています");
+                return "student_create.jsp";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ServletException("データベースエラー: " + e.getMessage());
+        }
+
         // Studentオブジェクトを作成
         Student student = new Student();
         student.setEntYear(entYear);
@@ -68,7 +79,6 @@ public class StudentCreateExecuteAction extends Action {
         student.setSchool(school);
 
         // データベースに保存
-        StudentDao studentDao = new StudentDao();
         try {
             studentDao.save(student);
         } catch (Exception e) {
@@ -80,3 +90,4 @@ public class StudentCreateExecuteAction extends Action {
         return "student_create_done.jsp";  // 学生一覧ページにリダイレクト
     }
 }
+

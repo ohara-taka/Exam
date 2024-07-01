@@ -16,8 +16,10 @@ public class StudentDao extends Dao {
 
 	private String baseSql = "SELECT * FROM STUDENT WHERE SCHOOL_CD = ?";
 
+
+
     // StudentのIDを取得するsearchAllメソッド
-    public Student get(String no) throws Exception {
+public Student get(String no) throws Exception {
 
     	Student student = new Student();
 
@@ -398,5 +400,44 @@ public boolean update(Student student) throws Exception {
     return count > 0;
 }
 
+
+public Student get(String no, String schoolCd) throws Exception {
+    Student student = null;
+    Connection con = getConnection();
+    PreparedStatement st = null;
+    ResultSet rs = null;
+
+    try {
+        st = con.prepareStatement("SELECT * FROM STUDENT WHERE NO = ? AND SCHOOL_CD = ?");
+        st.setString(1, no);
+        st.setString(2, schoolCd);
+        rs = st.executeQuery();
+
+        SchoolDao schoolDao = new SchoolDao();
+        if (rs.next()) {
+            student = new Student();
+            student.setNo(rs.getString("NO"));
+            student.setName(rs.getString("NAME"));
+            student.setEntYear(rs.getInt("ENT_YEAR"));
+            student.setClassNum(rs.getString("CLASS_NUM"));
+            student.setAttend(rs.getBoolean("IS_ATTEND"));
+            student.setSchool(schoolDao.get(rs.getString("SCHOOL_CD")));
+        }
+    } catch (Exception e) {
+        throw e;
+    } finally {
+        // close resources
+        if (rs != null) {
+            rs.close();
+        }
+        if (st != null) {
+            st.close();
+        }
+        if (con != null) {
+            con.close();
+        }
+    }
+    return student;
+}
 
 }
