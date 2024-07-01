@@ -72,26 +72,34 @@
                     <button type="submit">検索</button>
                     <!-- student_list.jspより参照 -->
                     <c:choose>
-				<c:when test="${students.size()>0}">
+				<c:when test="${testList.size()>0}">
 
-					<div>検索結果件数 :${students.size()}件</div>
+					<div>科目 :${subjectName} （${f4}）回</div>
 
 					<table>
 						<tr>
 							<th>入学年度</th>
 							<th>クラス</th>
-							<th>科目</th>
-							<th>回数</th>
+							<th>学生番号</th>
+							<th>氏名</th>
+							<th>点数</th>
 						</tr>
 
 
-						<c:forEach var="student" items="${students}">
+						<c:forEach var="test" items="${testList}">
 							<tr>
+<<<<<<< Updated upstream
 								<td>${student.entYear}</td>
 								<td>${student.class}</td>
 								<td>${student.subject}</td>
 								<td>${student.no}</td>
 
+=======
+								<td>${test.student.getEntYear()}</td>
+								<td>${test.class}</td>
+								<td>${test.subject}</td>
+								<td>${test.no}</td>
+>>>>>>> Stashed changes
 
 								<td><a href="StudentUpdate.action">変更</a></td>
 
