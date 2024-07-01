@@ -34,13 +34,9 @@
                     	<!-- 入学年度今年から前後10年間を表示 -->
 <%
 		                    int currentYear = java.time.Year.now().getValue();
-		                	for (int i = currentYear - 10; i <= currentYear + 10; i++) {
+		                	for (int i = currentYear; i >= currentYear - 10; i--) {
 		                        out.println("<option value=\"" + i + "\">" + i + "</option>");
 		                    }%>
- <c:if test="${year==f1}">selected</c:if>
-
-
-
                         </select>
                     </div>
                     <div class="form-group">
@@ -48,7 +44,7 @@
                         <select id="class">
                             <option value="">------</option>
                             <c:forEach var="num" items="${class_num_set}">
-                                <option value="${num}"> <c:if test="${num==f2}">selected</c:if>${num}</option>
+                                <option value="${num}">${num}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -57,7 +53,7 @@
                         <select name="subject" required>
                             <option value="">------</option>
                             <c:forEach var="subject" items="${subjectList}">
-                                <option value="${subject.cd}"><c:if test="${subject.cd==f3}">selected</c:if>${subject.cd}</option>
+                                <option value="${subject.cd}">${subject.name}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -66,11 +62,11 @@
                         <select id="times">
                             <option value="">------</option>
 <%
-                            int TestNumber=11;
-		                	for (int i = TestNumber - 10; i <= TestNumber + 89; i++) {
+                            int TestNumber=10;
+		                	for (int i =TestNumber - 9; i <=TestNumber; i++) {
 		                        out.println("<option value=\"" + i + "\">" + i + "</option>");
 		                    }
-		                 %><c:if test="${num==f4}">selected</c:if>
+		                 %>
                         </select>
                     </div>
                     <button type="submit">検索</button>
@@ -96,14 +92,6 @@
 								<td>${student.subject}</td>
 								<td>${student.no}</td>
 
-								<td><c:choose>
-										<c:when test="${student.isAttend()}">
-									○
-								</c:when>
-										<c:otherwise>
-									×
-								</c:otherwise>
-									</c:choose></td>
 
 								<td><a href="StudentUpdate.action">変更</a></td>
 
