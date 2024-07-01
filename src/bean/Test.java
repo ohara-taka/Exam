@@ -4,25 +4,25 @@ import java.io.Serializable;
 
 public class Test implements Serializable {
 
-    private String studentNo;
+    private Student student;
     private String classNum;
-    private String subjectCd;
-    private String schoolCd;
+    private Subject subject;
+    private School school;
     private int no;
     private int point;
 
     // ゲッターメソッド
-    public String getStudentNo() {
-        return studentNo;
+    public Student getStudent() {
+        return student;
     }
     public String getClassNum() {
         return classNum;
     }
-    public String getSubjectCd() {
-        return subjectCd;
+    public Subject getSubject() {
+        return subject;
     }
-    public String getSchoolCd() {
-        return schoolCd;
+    public School getSchool() {
+        return school;
     }
     public int getNo() {
         return no;
@@ -32,17 +32,17 @@ public class Test implements Serializable {
     }
 
     // セッターメソッド
-    public void setStudentNo(String studentNo) {
-        this.studentNo = studentNo;
+    public void setStudent(Student student) {
+        this.student = student;
     }
     public void setClassNum(String classNum) {
         this.classNum = classNum;
     }
-    public void setSubjectCd(String subjectCd) {
-        this.subjectCd = subjectCd;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
-    public void setSchoolCd(String schoolCd) {
-        this.schoolCd = schoolCd;
+    public void setSchool(School school) {
+        this.school = school;
     }
     public void setNo(int no) {
         this.no = no;
