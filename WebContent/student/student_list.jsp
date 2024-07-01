@@ -68,6 +68,7 @@ select {
 	padding: 5px; /* 内側の余白を追加 */
 	appearance: none; /* ブラウザのデフォルトのスタイルを無効にする */
 }
+
 </style>
 
 </head>
@@ -80,13 +81,12 @@ select {
 
 		<%@include file="sideber.jsp"%>
 
-		<div class="main-content">
+<div class="main-content">
+    <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;学生管理</h2>
 
-			<h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;学生管理</h2>
-
-			<div class="new-registration">
-				<a href="StudentCreate.action">新規登録</a>
-			</div>
+    <div class="new-registration">
+        <a href="StudentCreate.action">新規登録</a>
+    </div>
 
 			<form action="StudentList.action" method="post">
 
@@ -130,54 +130,50 @@ select {
 			</form>
 
 
-			<c:choose>
-				<c:when test="${students.size()>0}">
-
-					<div>検索結果件数 :${students.size()}件</div>
-
-					<table class="student-custom-table">
-						<tr>
-							<th>入学年度</th>
-							<th>学生番号</th>
-							<th>氏名</th>
-							<th>クラス</th>
-							<th>在学中</th>
-						</tr>
-
-						<!--StudentAll.javaからstudentが送られてきているので、
-				１件ずつstudentに取り出して表示している。 -->
-						<c:forEach var="student" items="${students}">
-							<tr>
-								<td>${student.entYear}</td>
-								<td>${student.no}</td>
-								<td>${student.name}</td>
-								<td>${student.classNum}</td>
-
-								<td><c:choose>
-										<c:when test="${student.isAttend()}">
-									○
-								</c:when>
-										<c:otherwise>
-									×
-								</c:otherwise>
-									</c:choose></td>
-
-								<td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
-
-							</tr>
-						</c:forEach>
-					</table>
-
-				</c:when>
-				<c:otherwise>
-					<div>学生情報が存在しませんでした</div>
-				</c:otherwise>
-			</c:choose>
-
-		</div>
-	</div>
+   <div class="table-container">
+        <c:choose>
+            <c:when test="${students.size() > 0}">
+                <div>検索結果件数: ${students.size()}件</div>
+                <table class="student-custom-table">
+            <tr>
+                <th>入学年度</th>
+                <th>学生番号</th>
+                <th>氏名</th>
+                <th>クラス</th>
+                <th>在学中</th>
+                <th>変更</th>
+            </tr>
+            <c:forEach var="student" items="${students}">
+                <tr>
+                    <td>${student.entYear}</td>
+                    <td>${student.no}</td>
+                    <td>${student.name}</td>
+                    <td>${student.classNum}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${student.isAttend()}">
+                                ○
+                            </c:when>
+                            <c:otherwise>
+                                ×
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
+                </tr>
+            </c:forEach>
+       </table>
+            </c:when>
+            <c:otherwise>
+                <div>学生情報が存在しませんでした</div>
+            </c:otherwise>
+        </c:choose>
+    </div>
+</div>
 </div>
 
+</div>
 
 <%@include file="../footer.jsp"%>
+
 
