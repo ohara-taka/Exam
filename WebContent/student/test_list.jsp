@@ -21,7 +21,7 @@ body {
 	width: 95%;
 	margin-left: auto;
 	margin-right: auto;
-} 
+}
 
 .container2 {
 	display: flex;
@@ -66,8 +66,6 @@ button {
 button:hover {
 	background-color: #5a6268;
 }
-
-
 
 select {
 	border: 1px solid #ccc; /* 薄い枠の色 */
@@ -170,7 +168,7 @@ input {
 
 						</div>
 
-						<button type=submit>検索</button>
+						<button type="submit" name="action" value="sj">検索</button>
 
 						<input type="hidden" value="sj" name="f">
 
@@ -195,7 +193,7 @@ input {
 								maxlength="10" required>
 						</div>
 
-						<button type=submit>検索</button>
+						<button type="submit" name="action" value="st">検索</button>
 
 						<input type="hidden" value="st" name="f">
 
@@ -212,10 +210,8 @@ input {
 
 
 			<c:choose>
-				<c:when test="${test_list_subjects.size()>0}">
-
-					<div>科目 :${subjectName}</div>
-
+				<c:when test="${not empty test_list_subjects}">
+					<div>科目 : ${subjectName}</div>
 					<table>
 						<tr>
 							<th>入学年度</th>
@@ -225,9 +221,6 @@ input {
 							<th>1回</th>
 							<th>2回</th>
 						</tr>
-
-						<!--StudentAll.javaからstudentが送られてきているので、
-				１件ずつstudentに取り出して表示している。 -->
 						<c:forEach var="test_list_subject" items="${test_list_subjects}">
 							<tr>
 								<td>${test_list_subject.entYear}</td>
@@ -236,18 +229,52 @@ input {
 								<td>${test_list_subject.studentName}</td>
 								<td>${test_list_subject.getPoint(1)}</td>
 								<td>${test_list_subject.getPoint(2)}</td>
-
-								<td><a href="StudentUpdate.action">変更</a></td>
-
 							</tr>
 						</c:forEach>
 					</table>
-
 				</c:when>
-				<c:otherwise>
-					<div>学生情報が存在しませんでした</div>
-				</c:otherwise>
 			</c:choose>
+
+			<c:choose>
+				<c:when test="${not empty test_list_students}">
+					<div>氏名 : ${studentName}</div>
+					<table>
+						<tr>
+							<th>科目名</th>
+							<th>科目コード</th>
+							<th>回数</th>
+							<th>点数</th>
+						</tr>
+						<c:forEach var="test_list_student" items="${test_list_students}">
+							<tr>
+								<td>${test_list_student.subjectName}</td>
+								<td>${test_list_student.subjectCd}</td>
+								<td>${test_list_student.num}</td>
+								<td>${test_list_student.point}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</c:when>
+			</c:choose>
+
+			<c:if test="${empty test_list_subjects && empty test_list_students}">
+				<c:if test="${not empty param.f}">
+					<div>学生情報が存在しませんでした</div>
+				</c:if>
+			</c:if>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

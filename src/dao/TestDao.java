@@ -14,8 +14,8 @@ import bean.Test;
 
 public class TestDao extends Dao {
 
-	private String baseSql = "SELECT ENT_YEAR, TEST.CLASS_NUM, STUDENT_NO, NAME, POINT" +
-			 "FROM TEST INNER JOIN STUDENT ON STUDENT.NO = TEST.STUDENT_NO";  // ここでベースのSQLを定義
+	private String baseSql = "SELECT STUDENT.ENT_YEAR, TEST.CLASS_NUM, STUDENT_NO, STUDENT.NAME, POINT, TEST.SUBJECT_CD, TEST.NO " +
+			 "FROM TEST INNER JOIN STUDENT ON STUDENT.NO = TEST.STUDENT_NO ";  // ここでベースのSQLを定義
 
 
 
@@ -105,6 +105,9 @@ public class TestDao extends Dao {
 				test.setClassNum(rs.getString("TEST.CLASS_NUM"));
 
 
+	            // デバッグ用出力
+	            System.out.println("Fetched Test: " + test);
+
 
 				tests.add(test);
 			}
@@ -127,6 +130,9 @@ public class TestDao extends Dao {
 	        ps.setString(3, subject.getCd());
 	        ps.setInt(4, num);
 	        ps.setString(5, school.getCd());
+
+	        // デバッグ用出力
+	        System.out.println("Executing SQL: " + ps.toString());
 
 	        try (ResultSet rs = ps.executeQuery()) {
 	            tests = postFilter(rs, school);

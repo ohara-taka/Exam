@@ -23,7 +23,7 @@ public class TestListAction extends Action {
 			) throws Exception {
 
 		setTestListSubject(request,response);
-
+		setTestListStudent(request,response);
 
         // FrontControllerを使用しているためreturn文でフォワードできる
 		request.getRequestDispatcher("test_list.jsp").forward(request, response);
@@ -66,9 +66,10 @@ public class TestListAction extends Action {
 	}
 
 
-//	private void setTestListStudent(HttpServletRequest request, HttpServletResponse response
-//			) throws Exception {
-//
-//	}
+	private void setTestListStudent(HttpServletRequest request, HttpServletResponse response
+			) throws Exception {
+
+
+	}
 
 }

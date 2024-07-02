@@ -30,6 +30,11 @@ public class TestRegistAction extends Action {
         String subjectName = req.getParameter("f3");
         String numberStr = req.getParameter("f4");
 
+        System.out.println("entYearStr: " + entYearStr);
+        System.out.println("classNum: " + classNum);
+        System.out.println("subjectCd: " + subjectName);
+        System.out.println("numberStr: " + numberStr);
+
 		int entYear = 0; // 入学年度
 		int number = 0; // 入学年度
 
@@ -46,9 +51,9 @@ public class TestRegistAction extends Action {
 	    List<String> list = classNumDao.filter(teacher.getSchool());
 
 
-<<<<<<< Updated upstream
-        	req.setAttribute("class_num_set", list);
-=======
+
+	    req.setAttribute("class_num_set", list);
+
 //	  //テスト呼び出し
 		TestDao testDao = new TestDao();
 		    List<Test> testList = null;
@@ -61,7 +66,12 @@ public class TestRegistAction extends Action {
 	            Subject subject = new Subject();
 	            subject.setCd(subjectName);
 
+
+	            System.out.println("Before calling testDao.filter()");
 		    	testList = testDao.filter(entYear, classNum, subject, number, teacher.getSchool());
+	            System.out.println("After calling testDao.filter()");
+
+
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		    }
@@ -69,7 +79,6 @@ public class TestRegistAction extends Action {
         	req.setAttribute("class_num_set", list);
 		    req.setAttribute("testList", testList);
 		    req.setAttribute("subjectName", subjectName);
->>>>>>> Stashed changes
 
 
         	  req.setAttribute("f1", entYear);
