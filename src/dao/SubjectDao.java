@@ -46,8 +46,8 @@ public class SubjectDao extends Dao {
 
         if (rs.next()) {
             subject = new Subject();
-            subject.setCd(rs.getString("subject_cd"));
-            subject.setName(rs.getString("subject_name"));
+            subject.setCd(rs.getString("cd"));
+            subject.setName(rs.getString("name"));
         }
 
         st.close();
@@ -108,7 +108,7 @@ public class SubjectDao extends Dao {
         Connection con = getConnection();
 
         PreparedStatement st = con.prepareStatement(
-            "DELETE FROM subject WHERE subject_cd = ? AND school_name = ?");
+            "DELETE FROM subject WHERE cd = ? AND school_cd = ?");
         st.setString(1, subject.getCd());
         st.setString(2, subject.getSchool().getCd());
 
