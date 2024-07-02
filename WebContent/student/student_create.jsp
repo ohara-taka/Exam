@@ -51,35 +51,33 @@
         <div class="main-content">
             <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;学生情報登録</h2>
 
-
-
-            <form id="studentForm" action="StudentCreateExecute.action" method="get" onsubmit="return validateForm()">
+            <form id="studentForm" action="StudentCreateExecute.action" method="post" onsubmit="return validateForm()">
                 <label for="ent_year">入学年度</label><br>
                 <select id="ent_year" name="ent_year">
                     <option value="" disabled selected>--------</option>
                     <%
                         int currentYear = java.time.Year.now().getValue();
                         for (int i = currentYear - 10; i <= currentYear + 10; i++) {
-                            out.println("<option value=\"" + i + "\">" + i + "</option>");
+                            out.println("<option value=\"" + i + "\"" + (i == Integer.parseInt(request.getAttribute("entYear") != null ? request.getAttribute("entYear").toString() : "0") ? " selected" : "") + ">" + i + "</option>");
                         }
                     %>
                 </select><br>
                 <div id="ent_year_error" class="error-message" style="display:none;">入学年度を選択してください</div>
 
                 <label for="no">学生番号</label><br>
-                <input type="text" id="no" name="no" maxlength="10" required placeholder="学生番号を入力してください" value="${no}"><br>
+                <input type="text" id="no" name="no" maxlength="10" required placeholder="学生番号を入力してください" value="${requestScope.studentNo != null ? requestScope.studentNo : ''}"><br>
                 <!-- エラーメッセージの表示 -->
-            <c:if test="${not empty errorMessage}">
-                <div class="error-message">${errorMessage}</div>
-            </c:if>
+                <c:if test="${not empty errorMessage}">
+                    <div class="error-message">${errorMessage}</div>
+                </c:if>
 
                 <label for="name">氏名</label><br>
-                <input type="text" id="name" name="name" maxlength="30" required placeholder="氏名を入力してください" value="${name}"><br>
+                <input type="text" id="name" name="name" maxlength="30" required placeholder="氏名を入力してください" value="${requestScope.studentName != null ? requestScope.studentName : ''}"><br>
 
                 <label for="class_num">クラス</label><br>
                 <select id="class_num" name="class_num">
                     <c:forEach var="classNum" items="${classNumList}">
-                        <option value="${classNum}">${classNum}</option>
+                        <option value="${classNum}" ${classNum == requestScope.classNum ? 'selected' : ''}>${classNum}</option>
                     </c:forEach>
                 </select><br>
 

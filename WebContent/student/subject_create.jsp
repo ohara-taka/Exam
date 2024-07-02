@@ -30,7 +30,7 @@
                 <button type="submit">登録</button>
             </div>
             	<br>
-                <a href="javascript:history.back();">戻る</a>
+                <a href="SubjectList.action">戻る</a>
 
         </form>
     </div>

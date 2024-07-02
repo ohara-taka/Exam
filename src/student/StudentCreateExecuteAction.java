@@ -22,14 +22,18 @@ public class StudentCreateExecuteAction extends Action {
 
         // フォームから送信されたデータを取得
         String entYearStr = request.getParameter("ent_year");
-        String studentNo = request.getParameter("no");
-        String studentName = request.getParameter("name");
-        String classNum = request.getParameter("class_num");
+        String studentNo = request.getParameter("no").trim(); // トリム追加
+        String studentName = request.getParameter("name").trim(); // トリム追加
+        String classNum = request.getParameter("class_num").trim(); // トリム追加
         String isAttendStr = request.getParameter("isAttend");
 
         // バリデーションチェック
         if (entYearStr == null || entYearStr.isEmpty()) {
             request.setAttribute("errorMessage", "入学年度を選択してください");
+            request.setAttribute("entYear", entYearStr);
+            request.setAttribute("studentNo", studentNo);
+            request.setAttribute("studentName", studentName);
+            request.setAttribute("classNum", classNum);
             return "student_create.jsp";
         }
 
@@ -39,6 +43,10 @@ public class StudentCreateExecuteAction extends Action {
             entYear = Integer.parseInt(entYearStr);
         } catch (NumberFormatException e) {
             request.setAttribute("errorMessage", "入学年度の形式が正しくありません。");
+            request.setAttribute("entYear", entYearStr);
+            request.setAttribute("studentNo", studentNo);
+            request.setAttribute("studentName", studentName);
+            request.setAttribute("classNum", classNum);
             return "student_create.jsp";
         }
 
@@ -61,8 +69,14 @@ public class StudentCreateExecuteAction extends Action {
         try {
             Student existingStudent = studentDao.get(studentNo, school.getCd());
             if (existingStudent != null) {
+                // 入力データをリクエストに設定して再表示
                 request.setAttribute("errorMessage", "学生番号が重複しています");
-                return "student_create.jsp";
+                request.setAttribute("entYear", entYearStr);
+                request.setAttribute("studentNo", studentNo);
+                request.setAttribute("studentName", studentName);
+                request.setAttribute("classNum", classNum);
+//                return "student_create.jsp";
+                return "StudentCreate.action";
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,4 +104,3 @@ public class StudentCreateExecuteAction extends Action {
         return "student_create_done.jsp";  // 学生一覧ページにリダイレクト
     }
 }
-
