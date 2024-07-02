@@ -15,7 +15,7 @@ import bean.Test;
 public class TestDao extends Dao {
 
 	private String baseSql = "SELECT STUDENT.ENT_YEAR, TEST.CLASS_NUM, STUDENT_NO, STUDENT.NAME, POINT, TEST.SUBJECT_CD, TEST.NO " +
-			 "FROM TEST INNER JOIN STUDENT ON STUDENT.NO = TEST.STUDENT_NO ";  // ここでベースのSQLを定義
+		    "FROM TEST INNER JOIN STUDENT ON STUDENT.NO = TEST.STUDENT_NO ";
 
 
 
@@ -38,7 +38,7 @@ public class TestDao extends Dao {
 		try {
 			// TESTテーブルからそれぞれ取得
 			st = con.prepareStatement(
-					baseSql + "WHERE STUDENT_NO = ? AND SUBJECT_NO = ? AND TEST.SCHOOL_CD = ? AND TEST.NO = ?"
+					baseSql + "WHERE STUDENT_NO = ? AND SUBJECT_CD = ? AND TEST.SCHOOL_CD = ? AND TEST.NO = ?"
 					);
 
 			st.setString(1, student.getNo());
@@ -91,6 +91,9 @@ public class TestDao extends Dao {
 			while (rs.next()) {
 				Student student = new Student();
 				student.setNo(rs.getString("STUDENT_NO"));
+				student.setEntYear(rs.getInt("ENT_YEAR"));
+				student.setName(rs.getString("NAME"));
+
 
 				Subject subject = new Subject();
 				subject.setCd(rs.getString("SUBJECT_CD"));

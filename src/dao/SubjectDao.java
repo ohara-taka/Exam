@@ -39,7 +39,7 @@ public class SubjectDao extends Dao {
         Connection con = getConnection();
 
         PreparedStatement st = con.prepareStatement(
-            "SELECT * FROM subject WHERE subject_cd = ? AND school_cd = ?");
+            "SELECT * FROM subject WHERE cd = ? AND school_cd = ?");
         st.setString(1, id);
         st.setString(2, school.getCd());
         ResultSet rs = st.executeQuery();
