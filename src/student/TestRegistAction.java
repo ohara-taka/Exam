@@ -35,21 +35,19 @@ public class TestRegistAction extends Action {
         int entYear = 0; // 入学年度
         int number = 0; // 回数
 
-        if (teacher != null) { // Teacherオブジェクトが存在する場合
-            School school = teacher.getSchool(); // TeacherからSchoolオブジェクトを取得
-            SubjectDao subjectDao = new SubjectDao(); // SubjectDaoのインスタンスを生成
-            List<Subject> subjectList = subjectDao.filter(school); // school_cdに基づいて科目をフィルタリング
-            req.setAttribute("subjectList", subjectList); // フィルタリングされた科目リストをリクエストに設定
-            req.setAttribute("schoolCd", school.getCd()); // Schoolのcdをリクエストに設定
+        if (teacher != null) {
+            School school = teacher.getSchool();
+            SubjectDao subjectDao = new SubjectDao();
+            List<Subject> subjectList = subjectDao.filter(school);
+            req.setAttribute("subjectList", subjectList);
+            req.setAttribute("schoolCd", school.getCd());
 
-            // subjectCd から Subject オブジェクトを取得し、subjectName を設定
             Subject subject = subjectDao.get(subjectCd, school.getCd());
-            if (subject != null) {
-                req.setAttribute("subjectName", subject.getName());
-                req.setAttribute("f3", subject.getCd()); // 設定している科目コード
-            } else {
-                req.setAttribute("subjectName", "不明な科目");
-            }
+            req.setAttribute("subjectName",subject.getName());
+
+            System.out.println("subjectName:" + subject.getName());
+
+            req.setAttribute("subjectCd",subject.getCd());
         }
 
         // DBからデータ取得
@@ -68,6 +66,7 @@ public class TestRegistAction extends Action {
             if (numberStr != null && !numberStr.isEmpty()) {
                 number = Integer.parseInt(numberStr);
             }
+
             // subjectCdからSubjectオブジェクトを作成
             Subject subject = new Subject();
             subject.setCd(subjectCd);

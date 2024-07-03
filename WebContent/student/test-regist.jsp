@@ -93,10 +93,13 @@
 						<button type="submit">検索</button>
 					</form>
 
-					<form action="TestRegistExecuteAction" method="post">
+					<form action="TestRegistExecute.action" method="post">
 						<c:choose>
 							<c:when test="${testList.size() > 0}">
 								<div>科目 : ${subjectName} ${f4}回</div>
+								<!-- 科目名を隠しフィールドとして追加 -->
+								<input type="hidden" name="subjectName" value="${subjectName}">
+
 								<table>
 									<tr>
 										<th>入学年度</th>
@@ -108,12 +111,14 @@
 									<c:forEach var="test" items="${testList}">
 										<tr>
 											<td>${test.student.entYear}</td>
-											<td>${test.classNum}</td>
-											<td>${test.student.no}</td>
+											<td><input type="hidden" name="classNum[]"
+												value="${test.classNum}">${test.classNum}</td>
+											<td><input type="hidden" name="studentNo[]"
+												value="${test.student.no}">${test.student.no}</td>
 											<td>${test.student.name}</td>
-											<td><input type="hidden" name="testNo"
+											<td><input type="hidden" name="testNo[]"
 												value="${test.no}"> <input type="number"
-												name="points" value="${test.point}" required></td>
+												name="points[]" value="${test.point}" required></td>
 										</tr>
 									</c:forEach>
 								</table>
