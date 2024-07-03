@@ -75,7 +75,6 @@ public class StudentCreateExecuteAction extends Action {
                 request.setAttribute("studentNo", studentNo);
                 request.setAttribute("studentName", studentName);
                 request.setAttribute("classNum", classNum);
-//                return "student_create.jsp";
                 return "StudentCreate.action";
             }
         } catch (Exception e) {
