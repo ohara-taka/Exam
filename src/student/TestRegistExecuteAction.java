@@ -92,7 +92,7 @@ public class TestRegistExecuteAction extends Action {
             connection.commit(); // トランザクションをコミット
 
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("test.regist.done.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("test_regist_done.jsp");
             dispatcher.forward(request, response);
 
 

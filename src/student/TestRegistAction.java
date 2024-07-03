@@ -87,7 +87,7 @@ public class TestRegistAction extends Action {
         req.setAttribute("f4", numberStr);
 
         // FrontControllerを使用しているためreturn文でフォワードできる
-        req.getRequestDispatcher("test-regist.jsp").forward(req, response);
+        req.getRequestDispatcher("test_regist.jsp").forward(req, response);
         return null; // 戻り値を追加
     }
 }
