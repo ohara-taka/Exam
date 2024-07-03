@@ -83,6 +83,18 @@
 
                 <button type="submit" name="end">登録して終了</button><br>
             </form>
+			<br><br>
+
+			<!-- CSVファイルアップロードフォーム -->
+                <h2>CSVファイル取り込み</h2>
+                <form id="studentForm" action="UploadCsv.action" method="post" enctype="multipart/form-data">
+                    <label for="csvFile">CSVファイルを選択:</label>
+                    <input type="file" name="csvFile" id="csvFile" accept=".csv" required>
+                    <button type="submit">取り込み</button>
+                </form>
+
+                <br>
+
 
             <a href="javascript:history.back();">戻る</a>
         </div>
