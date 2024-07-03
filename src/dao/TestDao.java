@@ -146,6 +146,22 @@ public class TestDao extends Dao {
 	    return tests;
 	}
 
+	private boolean update(Test test, Connection connection) {
+	    boolean result = false;
+	    String sql = "UPDATE test SET point = ? WHERE STUDENT_NO = ? AND SUBJECT_CD = ? AND TEST.NO = ? AND TEST.SCHOOL_CD = ?";
+	    try (PreparedStatement ps = connection.prepareStatement(sql)) {
+	        ps.setInt(1, test.getPoint());
+	        ps.setString(2, test.getStudent().getNo());
+	        ps.setString(3, test.getSubject().getCd());
+	        ps.setInt(4, test.getNo());
+	        ps.setString(5, test.getSchool().getCd());
+	        result = ps.executeUpdate() > 0;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return result;
+	}
+
 
 //			try (ResultSet rs = ps.executeQuery()) {
 //				while (rs.next()) {
