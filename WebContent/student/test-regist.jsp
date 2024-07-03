@@ -72,7 +72,7 @@
 							<label for="times">回数</label> <select id="times" name="f4">
 								<option value="">------</option>
 								<%
-                                    int TestNumber = 10;
+                                    int TestNumber = 2;
                                     String numberStr = (String)request.getAttribute("f4");
                                     Integer number = null;
                                     if (numberStr != null) {
@@ -83,7 +83,7 @@
                                         }
                                     }
 
-                                    for (int i = TestNumber - 9; i <= TestNumber; i++) {
+                                    for (int i = TestNumber - 1; i <= TestNumber; i++) {
                                         out.println("<option value=\"" + i + "\"" +
                                             (number != null && i == number ? " selected" : "") + ">" + i + "</option>");
                                     }
