@@ -99,6 +99,8 @@
 								<div>科目 : ${subjectName} ${f4}回</div>
 								<!-- 科目名を隠しフィールドとして追加 -->
 								<input type="hidden" name="subjectName" value="${subjectName}">
+								<input type="hidden" name="subjectCd" value="${subjectCd}">
+
 
 								<table>
 									<tr>

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.School;
 import bean.Student;
@@ -13,7 +14,6 @@ import bean.Teacher;
 import bean.Test;
 import dao.TestDao;
 import tool.Action;
-import util.Util;
 
 
 public class TestRegistExecuteAction extends Action {
@@ -21,10 +21,10 @@ public class TestRegistExecuteAction extends Action {
         request.setCharacterEncoding("UTF-8");
 
 
-//        HttpSession session = request.getSession();
-//        Teacher teacher = (Teacher) session.getAttribute("teacher"); // セッションからTeacherオブジェクトを取得
+        HttpSession session = request.getSession();
+        Teacher teacher = (Teacher) session.getAttribute("teacher"); // セッションからTeacherオブジェクトを取得
 
-        Teacher teacher = Util.getUser(request);
+//        Teacher teacher = Util.getUser(request);
 
         // フォームデータを取得
         String[] studentNos = request.getParameterValues("studentNo[]");

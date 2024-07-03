@@ -35,19 +35,23 @@ public class TestRegistAction extends Action {
         int entYear = 0; // 入学年度
         int number = 0; // 回数
 
-        if (teacher != null) {
-            School school = teacher.getSchool();
-            SubjectDao subjectDao = new SubjectDao();
-            List<Subject> subjectList = subjectDao.filter(school);
-            req.setAttribute("subjectList", subjectList);
-            req.setAttribute("schoolCd", school.getCd());
+        if (teacher != null) { // Teacherオブジェクトが存在する場合
+            School school = teacher.getSchool(); // TeacherからSchoolオブジェクトを取得
+            SubjectDao subjectDao = new SubjectDao(); // SubjectDaoのインスタンスを生成
+            List<Subject> subjectList = subjectDao.filter(school); // school_cdに基づいて科目をフィルタリング
+            req.setAttribute("subjectList", subjectList); // フィルタリングされた科目リストをリクエストに設定
+            req.setAttribute("schoolCd", school.getCd()); // Schoolのcdをリクエストに設定
 
-            Subject subject = subjectDao.get(subjectCd, school.getCd());
-            req.setAttribute("subjectName",subject.getName());
+            // subjectCd から Subject オブジェクトを取得し、subjectName を設定
+            Subject oneSubject = subjectDao.get(subjectCd, school.getCd());
+            if (oneSubject != null) {
+                req.setAttribute("subjectName", oneSubject.getName());
+                req.setAttribute("f3", oneSubject.getCd()); // 設定している科目コード
+                req.setAttribute("subjectCd", oneSubject.getCd()); // 設定している科目コード
 
-            System.out.println("subjectName:" + subject.getName());
-
-            req.setAttribute("subjectCd",subject.getCd());
+            } else {
+                req.setAttribute("subjectName", "不明な科目");
+            }
         }
 
         // DBからデータ取得
@@ -66,7 +70,6 @@ public class TestRegistAction extends Action {
             if (numberStr != null && !numberStr.isEmpty()) {
                 number = Integer.parseInt(numberStr);
             }
-
             // subjectCdからSubjectオブジェクトを作成
             Subject subject = new Subject();
             subject.setCd(subjectCd);
