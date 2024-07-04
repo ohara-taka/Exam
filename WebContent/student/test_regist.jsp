@@ -22,7 +22,7 @@
 		<div class="content">
 			<%@ include file="sideber.jsp"%>
 			<div class="main-content">
-				<div class="container">
+				<div class="container2">
 					<header>
 						<h1>成績管理</h1>
 					</header>
