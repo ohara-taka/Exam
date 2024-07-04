@@ -283,45 +283,39 @@ try{
 
 
     public boolean save(Student student) throws Exception {
-        // コネクションを確立
         Connection connection = getConnection();
-        // プリペアードステートメント
         PreparedStatement statement = null;
-        // 実行件数
         int count = 0;
 
         try {
-            // データベースから学生を取得
             Student old = get(student.getNo());
             if (old == null) {
-                // 学生が存在しなかった場合
-                // プリペアードステートメントにINSERT文をセット
                 statement = connection.prepareStatement(
-                    "insert into student (no, name, ent_year, class_num, is_attend, school_cd) values (?, ?, ?, ?, ?, ?)"
+                    "INSERT INTO student (no, name, ent_year, class_num, is_attend, school_cd) VALUES (?, ?, ?, ?, ?, ?)"
                 );
-                // プリペアードステートメントに値をバインド
-                statement.setString(1, student.getNo().trim()); // トリム追加
-                statement.setString(2, student.getName().trim()); // トリム追加
+                statement.setString(1, student.getNo().trim());
+                statement.setString(2, student.getName().trim());
                 statement.setInt(3, student.getEntYear());
-                statement.setString(4, student.getClassNum().trim()); // トリム追加
+                statement.setString(4, student.getClassNum().trim());
                 statement.setBoolean(5, student.isAttend());
                 statement.setString(6, student.getSchool().getCd());
             } else {
-                // 学生が存在した場合
-                // プリペアードステートメントにUPDATE文をセット
                 statement = connection.prepareStatement(
-                    "update student set name=?, ent_year=?, class_num=?, is_attend=? where no=?"
+                    "UPDATE student SET name=?, ent_year=?, class_num=?, is_attend=? WHERE no=?"
                 );
-                // プリペアードステートメントに値をバインド
-                statement.setString(1, student.getName().trim()); // トリム追加
+                statement.setString(1, student.getName().trim());
                 statement.setInt(2, student.getEntYear());
-                statement.setString(3, student.getClassNum().trim()); // トリム追加
+                statement.setString(3, student.getClassNum().trim());
                 statement.setBoolean(4, student.isAttend());
-                statement.setString(5, student.getNo().trim()); // トリム追加
+                statement.setString(5, student.getNo().trim());
             }
 
-            // プリペアードステートメントを実行
             count = statement.executeUpdate();
+
+            if (old == null && count > 0) {
+                TestDao testDao = new TestDao();
+                testDao.insertInitialTests(student.getNo(), student.getClassNum(), student.getSchool());
+            }
         } catch (Exception e) {
             throw e;
         } finally {
@@ -332,7 +326,6 @@ try{
                     throw sqle;
                 }
             }
-
             if (connection != null) {
                 try {
                     connection.close();

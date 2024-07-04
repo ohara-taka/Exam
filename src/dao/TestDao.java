@@ -157,45 +157,89 @@ public class TestDao extends Dao {
 	}
 
 
-//新規作成
-public List<Test> save(String classNum, Subject subject, int num, School school) {
-    boolean result = false;
-    String sql = "INSERT INTO test (STUDENT_NO,SUBJECT_CD,SCHOOL_CD,NO,POINT,CLASS_NUM) VALUES(?,?,?,?,null,?) ";
-    try (Connection con = getConnection();
-	         PreparedStatement ps = con.prepareStatement(sql)) {
-        ps.setInt(1, ());
-        ps.setInt(2, ());
-	        ps.setString(3,  school.getCd());
-	        ps.setInt(4, num);
-	        ps.setString(5, point);
-	        ps.setString(6,classNum ());
-        result = ps.executeUpdate() > 0;
-    } catch (SQLException e) {
-        e.printStackTrace();
+////新規作成
+//public List<Test> save(String classNum, Subject subject, int num, School school) {
+//    boolean result = false;
+//    String sql = "INSERT INTO test (STUDENT_NO,SUBJECT_CD,SCHOOL_CD,NO,POINT,CLASS_NUM) VALUES(?,?,?,?,null,?) ";
+//    try (Connection con = getConnection();
+//	         PreparedStatement ps = con.prepareStatement(sql)) {
+//        ps.setInt(1, ());
+//        ps.setInt(2, ());
+//	        ps.setString(3,  school.getCd());
+//	        ps.setInt(4, num);
+//	        ps.setString(5, point);
+//	        ps.setString(6,classNum ());
+//        result = ps.executeUpdate() > 0;
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    }
+//    return result;
+//
+//}
+////  新規作成
+//  public boolean save(Test test, Connection connection) {
+//      boolean result = false;
+//      String sql = "INSERT INTO test (STUDENT_NO,SUBJECT_CD,SCHOOL_CD,NO,POINT,CLASS_NUM) VALUES(?,?,?,?,?,?) ";
+//      try (Connection con = getConnection();
+// 	         PreparedStatement ps = con.prepareStatement(sql)) {
+//      	   ps.setInt(1, );
+//             ps.setInt(2, subject.getCd());
+//   	        ps.setString(3,  school.getCd());
+//   	        ps.setInt(4, num);
+//   	        ps.setString(5, );
+//   	        ps.setString(6,classNum ());
+//          result = ps.executeUpdate() > 0;
+//      } catch (SQLException e) {
+//          e.printStackTrace();
+//      }
+//      return result;
+//
+//  }
+
+
+	public boolean insertInitialTests(String studentNo, String classNum, School school) throws Exception {
+        String sql = "INSERT INTO TEST (STUDENT_NO, SUBJECT_CD, SCHOOL_CD, NO, POINT, CLASS_NUM) VALUES (?, ?, ?, ?, NULL, ?)";
+        Connection con = getConnection();
+        PreparedStatement ps = null;
+        boolean result = false;
+
+        try {
+            ps = con.prepareStatement(sql);
+
+            for (int i = 1; i <= 2; i++) {
+                for (String subjectCd : new String[]{"A01", "A02", "A03", "A04"}) {
+                    ps.setString(1, studentNo);
+                    ps.setString(2, subjectCd);
+                    ps.setString(3, school.getCd());
+                    ps.setInt(4, i);
+                    ps.setString(5, classNum);
+                    ps.addBatch();
+                }
+            }
+
+            int[] results = ps.executeBatch();
+            result = results.length == 8;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
+            }
+        }
+
+        return result;
     }
-    return result;
-
-}
-//  新規作成
-  public boolean save(Test test, Connection connection) {
-      boolean result = false;
-      String sql = "INSERT INTO test (STUDENT_NO,SUBJECT_CD,SCHOOL_CD,NO,POINT,CLASS_NUM) VALUES(?,?,?,?,?,?) ";
-      try (Connection con = getConnection();
- 	         PreparedStatement ps = con.prepareStatement(sql)) {
-      	   ps.setInt(1, );
-             ps.setInt(2, subject.getCd());
-   	        ps.setString(3,  school.getCd());
-   	        ps.setInt(4, num);
-   	        ps.setString(5, );
-   	        ps.setString(6,classNum ());
-          result = ps.executeUpdate() > 0;
-      } catch (SQLException e) {
-          e.printStackTrace();
-      }
-      return result;
-
-  }
-
-
 
 }
