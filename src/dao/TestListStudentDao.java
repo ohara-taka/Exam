@@ -13,12 +13,7 @@ import bean.TestListStudent;
 
 public class TestListStudentDao extends Dao {
 
-    public String baseSql = "SELECT SUBJECT.NAME, SUBJECT.CD, TEST.NO, POINT " +
-            "FROM STUDENT INNER JOIN SUBJECT ON STUDENT.SCHOOL_CD = SUBJECT.SCHOOL_CD " +
-            "INNER JOIN TEST ON SUBJECT.CD = TEST.SUBJECT_CD " +
-            "WHERE STUDENT.NO = ? " +
-            "GROUP BY SUBJECT.NAME, TEST.NO, POINT " +
-            "ORDER BY SUBJECT.CD, TEST.NO";
+    public String baseSql = "SELECT SUBJECT.NAME, SUBJECT.CD, TEST.NO, POINT FROM TEST INNER JOIN STUDENT ON STUDENT.NO = TEST.STUDENT_NO INNER JOIN SUBJECT ON SUBJECT.CD = TEST.SUBJECT_CD WHERE STUDENT.NO = ? ORDER BY SUBJECT.CD, TEST.NO";
 
     private List<TestListStudent> postFilter(ResultSet rs) throws Exception {
 
@@ -60,6 +55,7 @@ public class TestListStudentDao extends Dao {
             // 学校コードを設定
             st.setString(1, student.getNo());
 
+            System.out.println("studentNo :" + student.getNo());
 
             // クエリを実行し、結果セットを取得
             rs = st.executeQuery();
