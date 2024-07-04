@@ -25,16 +25,6 @@ public class TestDao extends Dao {
 		Connection con = getConnection();
 		PreparedStatement st = null;
 
-
-		//        try (Connection con = getConnection();
-		//             PreparedStatement ps = con.prepareStatement(sql)) {
-		//            ps.setStudent(1, student);
-		//            ps.setSubject(2, subject);
-		//            ps.setSchool(3, school);
-		//            ps.setInt(4, no);
-
-
-
 		try {
 			// TESTテーブルからそれぞれ取得
 			st = con.prepareStatement(
@@ -146,10 +136,6 @@ public class TestDao extends Dao {
 	    return tests;
 	}
 
-
-
-
-
 	public boolean update(Test test, Connection connection) {
 	    boolean result = false;
 	    String sql = "UPDATE test SET point = ? WHERE STUDENT_NO = ? AND SUBJECT_CD = ? AND NO = ? AND SCHOOL_CD = ?";
@@ -171,123 +157,45 @@ public class TestDao extends Dao {
 	}
 
 
-//			try (ResultSet rs = ps.executeQuery()) {
-//				while (rs.next()) {
-//					Test test = new Test();
-//					Student student = new Student();
-//
-//					test.setStudent(student.getEntYear());
-//					test.setClassNum(rs.getString("class_num"));
-//					test.setSubjectCd(rs.getString("subject_cd"));
-//					test.setSchoolCd(rs.getString("school_cd"));
-//					test.setNo(rs.getInt("no"));
-//					test.setPoint(rs.getInt("point"));
-//					tests.add(test);
-//				}
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return tests;
-//	}
+//新規作成
+public List<Test> save(String classNum, Subject subject, int num, School school) {
+    boolean result = false;
+    String sql = "INSERT INTO test (STUDENT_NO,SUBJECT_CD,SCHOOL_CD,NO,POINT,CLASS_NUM) VALUES(?,?,?,?,null,?) ";
+    try (Connection con = getConnection();
+	         PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setInt(1, student());
+        ps.setInt(2, subject());
+	        ps.setString(3,  school.getCd());
+	        ps.setInt(4, num);
+	        ps.setString(5, point);
+	        ps.setString(6,classNum ());
+        result = ps.executeUpdate() > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return result;
+
+}
+//  新規作成
+  private boolean save(Test test, Connection connection) {
+      boolean result = false;
+      String sql = "INSERT INTO test (STUDENT_NO,SUBJECT_CD,SCHOOL_CD,NO,POINT,CLASS_NUM) VALUES(?,?,?,?,?,?) ";
+      try (Connection con = getConnection();
+ 	         PreparedStatement ps = con.prepareStatement(sql)) {
+      	   ps.setInt(1, );
+             ps.setInt(2, subject.getCd());
+   	        ps.setString(3,  school.getCd());
+   	        ps.setInt(4, num);
+   	        ps.setString(5, );
+   	        ps.setString(6,classNum ());
+          result = ps.executeUpdate() > 0;
+      } catch (SQLException e) {
+          e.printStackTrace();
+      }
+      return result;
+
+  }
 
 
 
-
-	//    // 全てのレコードを取得するメソッド
-	//    public List<Test> testAll() throws Exception {
-	//        List<Test> testList = new ArrayList<>();
-	//        String sql = "SELECT * FROM test";
-	//
-	//        try (Connection con = getConnection();
-	//             PreparedStatement ps = con.prepareStatement(sql);
-	//             ResultSet rs = ps.executeQuery()) {
-	//
-	//            while (rs.next()) {
-	//                Test test = new Test();
-	//                test.setStudentNo(rs.getString("student_no"));
-	//                test.setClassNum(rs.getString("class_num"));
-	//                test.setSubjectCd(rs.getString("subject_cd"));
-	//                test.setSchoolCd(rs.getString("school_cd"));
-	//                test.setNo(rs.getInt("no"));
-	//                test.setPoint(rs.getInt("point"));
-	//                testList.add(test);
-	//            }
-	//        } catch (SQLException e) {
-	//            e.printStackTrace();
-	//            throw new Exception("Database error occurred: " + e.getMessage(), e);
-	//        }
-	//
-	//        return testList;
-	//    }
-
-
-
-
-
-
-	// Save method for list
-//	public boolean save(List<Test> list) {
-//		boolean result = true;
-//		try (Connection con = getConnection()) {
-//			for (Test test : list) {
-//				result &= save(test, con);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			result = false;
-//		}
-//		return result;
-//	}
-//
-//	// Save method for single test with connection
-//	private boolean save(Test test, Connection connection) {
-//		boolean result = false;
-//		String sql = "INSERT INTO test (student_no, class_num, subject_cd, school_cd, no, point) VALUES (?, ?, ?, ?, ?, ?)";
-//
-//		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-//			ps.setString(1, test.getStudentNo());
-//			ps.setString(2, test.getClassNum());
-//			ps.setString(3, test.getSubjectCd());
-//			ps.setString(4, test.getSchoolCd());
-//			ps.setInt(5, test.getNo());
-//			ps.setInt(6, test.getPoint());
-//			result = ps.executeUpdate() > 0;
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return result;
-//	}
-//
-//
-//	// Delete method for list
-//	public boolean delete(List<Test> list) {
-//		boolean result = true;
-//		try (Connection con = getConnection()) {
-//			for (Test test : list) {
-//				result &= delete(test, con);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			result = false;
-//		}
-//		return result;
-//	}
-//
-//	// Delete method for single test with connection
-//	private boolean delete(Test test, Connection connection) {
-//		boolean result = false;
-//		String sql = "DELETE FROM test WHERE student_no = ? AND subject_cd = ? AND school_cd = ? AND no = ?";
-//
-//		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-//			ps.setString(1, test.getStudentNo());
-//			ps.setString(2, test.getSubjectCd());
-//			ps.setString(3, test.getSchoolCd());
-//			ps.setInt(4, test.getNo());
-//			result = ps.executeUpdate() > 0;
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return result;
-//	}
 }
