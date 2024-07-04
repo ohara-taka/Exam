@@ -163,8 +163,8 @@ public List<Test> save(String classNum, Subject subject, int num, School school)
     String sql = "INSERT INTO test (STUDENT_NO,SUBJECT_CD,SCHOOL_CD,NO,POINT,CLASS_NUM) VALUES(?,?,?,?,null,?) ";
     try (Connection con = getConnection();
 	         PreparedStatement ps = con.prepareStatement(sql)) {
-        ps.setInt(1, student());
-        ps.setInt(2, subject());
+        ps.setInt(1, ());
+        ps.setInt(2, ());
 	        ps.setString(3,  school.getCd());
 	        ps.setInt(4, num);
 	        ps.setString(5, point);
@@ -177,7 +177,7 @@ public List<Test> save(String classNum, Subject subject, int num, School school)
 
 }
 //  新規作成
-  private boolean save(Test test, Connection connection) {
+  public boolean save(Test test, Connection connection) {
       boolean result = false;
       String sql = "INSERT INTO test (STUDENT_NO,SUBJECT_CD,SCHOOL_CD,NO,POINT,CLASS_NUM) VALUES(?,?,?,?,?,?) ";
       try (Connection con = getConnection();
