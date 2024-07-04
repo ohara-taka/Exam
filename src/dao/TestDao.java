@@ -204,12 +204,16 @@ public class TestDao extends Dao {
         boolean result = false;
 
         try {
+            // 科目のリストを取得
+            SubjectDao subjectDao = new SubjectDao();
+            List<Subject> subjects = subjectDao.filter(school);
+
             ps = con.prepareStatement(sql);
 
             for (int i = 1; i <= 2; i++) {
-                for (String subjectCd : new String[]{"A01", "A02", "A03", "A04"}) {
+                for (Subject subject : subjects) {
                     ps.setString(1, studentNo);
-                    ps.setString(2, subjectCd);
+                    ps.setString(2, subject.getCd());
                     ps.setString(3, school.getCd());
                     ps.setInt(4, i);
                     ps.setString(5, classNum);
@@ -218,7 +222,7 @@ public class TestDao extends Dao {
             }
 
             int[] results = ps.executeBatch();
-            result = results.length == 8;
+            result = results.length == subjects.size() * 2;
 
         } catch (SQLException e) {
             e.printStackTrace();
