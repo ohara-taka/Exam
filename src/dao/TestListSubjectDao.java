@@ -1,6 +1,5 @@
 package dao;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +25,6 @@ public class TestListSubjectDao extends Dao {
         List<TestListSubject> testListSubjects = new ArrayList<>();
 
         try {
-
             while (rs.next()) {
                 TestListSubject testListSubject = new TestListSubject();
 
@@ -41,8 +39,8 @@ public class TestListSubjectDao extends Dao {
                 }
 
                 // 1回目と2回目の点数を設定
-                testListSubject.putPoint(1, rs.getInt("POINT1"));
-                testListSubject.putPoint(2, rs.getInt("POINT2"));
+                testListSubject.putPoint(1, rs.getObject("POINT1") != null ? rs.getInt("POINT1") : null);
+                testListSubject.putPoint(2, rs.getObject("POINT2") != null ? rs.getInt("POINT2") : null);
 
                 // リストにTestListSubjectを追加
                 testListSubjects.add(testListSubject);
@@ -66,7 +64,6 @@ public class TestListSubjectDao extends Dao {
         // SQLのグループ化とソート順を設定
         String order = " GROUP BY STUDENT.ENT_YEAR, TEST.CLASS_NUM, STUDENT.NO, STUDENT.NAME, SUBJECT.NAME ORDER BY STUDENT.NO";
 
-
         try {
             // データベース接続を取得
             con = getConnection();
@@ -78,7 +75,6 @@ public class TestListSubjectDao extends Dao {
             st.setInt(2, entYear);
             // クラス番号を設定
             st.setString(3, classNum);
-
             st.setString(4, subjectName);
 
             // クエリを実行し、結果セットを取得

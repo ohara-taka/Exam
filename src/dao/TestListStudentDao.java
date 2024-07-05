@@ -1,6 +1,5 @@
 package dao;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,17 +19,16 @@ public class TestListStudentDao extends Dao {
         List<TestListStudent> testListStudents = new ArrayList<>();
 
         try {
-
             while (rs.next()) {
                 TestListStudent testListStudent = new TestListStudent();
 
                 testListStudent.setSubjectName(rs.getString("SUBJECT.NAME"));
                 testListStudent.setSubjectCd(rs.getString("SUBJECT.CD"));
                 testListStudent.setNum(rs.getInt("TEST.NO"));
-                testListStudent.setPoint(rs.getInt("POINT"));
+                int point = rs.getInt("POINT");
+                testListStudent.setPoint(rs.wasNull() ? null : point); // Null値チェック
 
-
-                // リストにTestListSubjectを追加
+                // リストにTestListStudentを追加
                 testListStudents.add(testListStudent);
             }
         } catch (SQLException | NullPointerException e) {
@@ -40,31 +38,22 @@ public class TestListStudentDao extends Dao {
     }
 
     public List<TestListStudent> filter(Student student) throws Exception {
-        // リストを初期化
         List<TestListStudent> testListStudent = new ArrayList<>();
 
-        Connection con = getConnection();
+        Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
 
         try {
-            // データベース接続を取得
             con = getConnection();
-            // プリペアドステートメントにSQL文を設定
             st = con.prepareStatement(baseSql);
-            // 学校コードを設定
             st.setString(1, student.getNo());
 
-            System.out.println("studentNo :" + student.getNo());
-
-            // クエリを実行し、結果セットを取得
             rs = st.executeQuery();
-            // 結果セットを処理
             testListStudent = postFilter(rs);
         } catch (Exception e) {
             throw e;
         } finally {
-            // 結果セットを閉じる
             if (rs != null) {
                 try {
                     rs.close();
@@ -72,7 +61,6 @@ public class TestListStudentDao extends Dao {
                     e.printStackTrace();
                 }
             }
-            // プリペアドステートメントを閉じる
             if (st != null) {
                 try {
                     st.close();
@@ -80,7 +68,6 @@ public class TestListStudentDao extends Dao {
                     e.printStackTrace();
                 }
             }
-            // コネクションを閉じる
             if (con != null) {
                 try {
                     con.close();

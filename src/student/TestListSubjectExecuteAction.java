@@ -16,85 +16,81 @@ import dao.TestListSubjectDao;
 import tool.Action;
 import util.Util;
 
-
 public class TestListSubjectExecuteAction extends Action {
 
+    @Override
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String SjAction = request.getParameter("action");
 
-	@Override
-	public String execute(
-			HttpServletRequest request, HttpServletResponse response
-			) throws Exception {
+        if ("sj".equals(SjAction)) {
 
-		String SjAction = request.getParameter("action");
+            // ティーチャー情報を取得
+            Teacher teacher = Util.getUser(request);
 
-		if ("sj".equals(SjAction)) {
+            String entYearStr = request.getParameter("f1");
+            String classNum = request.getParameter("f2");
+            String subjectName = request.getParameter("f3");
 
-			// ティーチャー情報を取得
-			Teacher teacher = Util.getUser(request);
+            int entYear = 0; // 入学年度
 
-			String entYearStr = request.getParameter("f1");
-			String classNum = request.getParameter("f2");
-			String subjectName = request.getParameter("f3");
+            // entYearStrをint型のentYearに変換
+            if (entYearStr != null && !entYearStr.isEmpty()) {
+                try {
+                    entYear = Integer.parseInt(entYearStr);
+                } catch (NumberFormatException e) {
+                    entYear = 0; // デフォルト値を設定
+                }
+            }
 
-			int entYear = 0; // 入学年度
+            // クラス番号と科目情報を取得
+            ClassNumDao classNumDao = new ClassNumDao();
+            SubjectDao subjectDao = new SubjectDao();
+            TestListSubjectDao testListSubjectDao = new TestListSubjectDao();
+            List<TestListSubject> testListSubjects = null; // 学生リスト
+            List<String> classNumList = classNumDao.filter(teacher.getSchool());
+            List<Subject> subjectList = subjectDao.filter(teacher.getSchool());
 
-			//entYearStrをint型のentYearに変換
-			if (entYearStr != null && !entYearStr.isEmpty()) {
-				try {
-					entYear = Integer.parseInt(entYearStr);
-				} catch (NumberFormatException e) {
-					entYear = 0; // デフォルト値を設定
-				}
-			}
+            // 入学年度のリストを設定
+            LocalDate todaysDate = LocalDate.now();
+            int year = todaysDate.getYear();
+            List<Integer> entYearSet = new ArrayList<>();
+            for (int i = year - 10; i <= year + 10; i++) {
+                entYearSet.add(i);
+            }
 
+            testListSubjects = testListSubjectDao.filter(teacher.getSchool(), entYear, classNum, subjectName);
+            for (TestListSubject test : testListSubjects) {
+                if (test.getPoint(1) == null) {
+                    test.putPoint(1, null);  // "－" を表示するため、nullのままにします
+                }
+                if (test.getPoint(2) == null) {
+                    test.putPoint(2, null);  // "－" を表示するため、nullのままにします
+                }
+            }
 
-			// クラス番号と科目情報を取得
-			ClassNumDao classNumDao = new ClassNumDao();
-			SubjectDao subjectDao = new SubjectDao();
-			TestListSubjectDao testListSubjectDao = new TestListSubjectDao();
-			List<TestListSubject> testListSubjects = null; // 学生リスト
-			List<String> classNumList = classNumDao.filter(teacher.getSchool());
-			List<Subject> subjectList = subjectDao.filter(teacher.getSchool());
+            // デフォルト値の再セット
+            // レスポンス値をセット
+            // リクエストに入学年度をセット
+            request.setAttribute("f1", entYear);
+            request.setAttribute("f2", classNum);
+            request.setAttribute("f3", subjectName);
 
+            // 検索後の科目名表示の所のセット
+            request.setAttribute("subjectName", subjectName);
 
-			// 入学年度のリストを設定
-			LocalDate todaysDate = LocalDate.now();
-			int year = todaysDate.getYear();
-			List<Integer> entYearSet = new ArrayList<>();
-			for (int i = year - 10; i <= year + 10; i++) {
-				entYearSet.add(i);
-			}
+            // リクエストにクラス番号と科目情報を設定
+            request.setAttribute("class_num_set", classNumList);
+            request.setAttribute("subject_list_set", subjectList);
+            request.setAttribute("ent_year_set", entYearSet);
 
-			testListSubjects = testListSubjectDao.filter(teacher.getSchool(), entYear, classNum, subjectName);
+            // リクエストに得点リストをセット
+            request.setAttribute("test_list_subjects", testListSubjects);
 
-			//デフォルト値の再セット
-			//レスポンス値をセット
-			//リクエストに入学年度をセット
-			request.setAttribute("f1", entYear);
-			request.setAttribute("f2", classNum);
-			request.setAttribute("f3", subjectName);
+            // FrontControllerを使用しているためreturn文でフォワードできる
+            request.getRequestDispatcher("test_list.jsp").forward(request, response);
 
-			//検索後の科目名表示の所のセット
-			request.setAttribute("subjectName", subjectName);
+        }
 
-			// リクエストにクラス番号と科目情報を設定
-			request.setAttribute("class_num_set", classNumList);
-			request.setAttribute("subject_list_set", subjectList);
-			request.setAttribute("ent_year_set", entYearSet);
-
-
-			//リクエストに得点リストをセット
-			request.setAttribute("test_list_subjects", testListSubjects);
-
-
-			// FrontControllerを使用しているためreturn文でフォワードできる
-			request.getRequestDispatcher("test_list.jsp").forward(request, response);
-
-		}
-
-			return null; // 戻り値を追加
-
-
-	}
-
+        return null; // 戻り値を追加
+    }
 }

@@ -3,8 +3,6 @@ package bean;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
 // Serializableインターフェースを実装してBeanを作成する
 public class TestListSubject implements java.io.Serializable {
 
@@ -15,11 +13,9 @@ public class TestListSubject implements java.io.Serializable {
     private String classNum;
     private Map<Integer, Integer> points = new HashMap<>();
 
-
     // コンストラクタ
     public TestListSubject(){
     }
-
 
     // ゲッターメソッド
     public int getEntYear() {
@@ -39,10 +35,8 @@ public class TestListSubject implements java.io.Serializable {
     }
     public String getPoint(int key) {
         Integer value = this.points.get(key);
-        return value != null ? value.toString() : null;
+        return value != null ? value.toString() : "－";
     }
-
-
 
     // セッターメソッド
     public void setEntYear(int entYear) {
@@ -60,8 +54,7 @@ public class TestListSubject implements java.io.Serializable {
     public void setPoints(Map<Integer, Integer> points) {
         this.points = points;
     }
-    public void putPoint(int key,int value) {
-    	this.points.put(key,value);
-	}
-
+    public void putPoint(int key, Integer value) {
+        this.points.put(key, value);
+    }
 }
