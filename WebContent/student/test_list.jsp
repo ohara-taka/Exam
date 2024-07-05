@@ -155,7 +155,13 @@ input {
 				</form>
 			</div>
 
-			<p id="annai">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
+			<c:if test="${empty param.f}">
+				<p id="annai">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
+			</c:if>
+
+			<c:if test="${studentNotFound}">
+				<div>学生情報が存在しませんでした</div>
+			</c:if>
 
 			<c:choose>
 				<c:when test="${not empty test_list_subjects}">
@@ -185,7 +191,7 @@ input {
 
 			<c:choose>
 				<c:when test="${not empty test_list_students}">
-					<div>氏名 : ${studentName}</div>
+					<div>氏名 : ${studentName} (${f4})</div>
 					<table>
 						<tr>
 							<th>科目名</th>
@@ -208,10 +214,12 @@ input {
 				</c:when>
 			</c:choose>
 
-			<c:if test="${empty test_list_subjects && empty test_list_students}">
+			<c:if
+				test="${empty test_list_subjects && empty test_list_students && !studentNotFound}">
 				<c:if test="${not empty param.f}">
 					<div>学生情報が存在しませんでした</div>
 				</c:if>
+
 			</c:if>
 		</div>
 	</div>

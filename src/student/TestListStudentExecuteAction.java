@@ -21,67 +21,77 @@ import util.Util;
 
 public class TestListStudentExecuteAction extends Action {
 
-    @Override
-    public String execute(
-            HttpServletRequest request, HttpServletResponse response
-            ) throws Exception {
+	@Override
+	public String execute(
+			HttpServletRequest request, HttpServletResponse response
+			) throws Exception {
 
-        String StAction = request.getParameter("action");
+		String StAction = request.getParameter("action");
 
-        if ("st".equals(StAction)) {
+		if ("st".equals(StAction)) {
 
-            // ティーチャー情報を取得
-            Teacher teacher = Util.getUser(request);
+			// ティーチャー情報を取得
+			Teacher teacher = Util.getUser(request);
 
-            String studentNo = request.getParameter("f4");
+			String studentNo = request.getParameter("f4");
 
-            // クラス番号と科目情報を取得
-            ClassNumDao classNumDao = new ClassNumDao();
-            StudentDao studentDao = new StudentDao();
-            Student student = studentDao.get(studentNo);
-            String studentName = student.getName();
+			// クラス番号と科目情報を取得
+			ClassNumDao classNumDao = new ClassNumDao();
+			StudentDao studentDao = new StudentDao();
+			Student student = studentDao.get(studentNo);
 
-            System.out.println("studentNo : " + student.getNo());
+			if (student == null) {
+				request.setAttribute("studentNotFound", true);
+			} else {
 
-            SubjectDao subjectDao = new SubjectDao();
-            TestListStudentDao testListStudentDao = new TestListStudentDao();
-            List<TestListStudent> testListStudents = null; // 学生リスト
-            List<String> classNumList = classNumDao.filter(teacher.getSchool());
-            List<Subject> subjectList = subjectDao.filter(teacher.getSchool());
+				String studentName = student.getName();
 
-            // 入学年度のリストを設定
-            LocalDate todaysDate = LocalDate.now();
-            int year = todaysDate.getYear();
-            List<Integer> entYearSet = new ArrayList<>();
-            for (int i = year - 10; i <= year + 10; i++) {
-                entYearSet.add(i);
-            }
+				System.out.println("studentNo : " + student.getNo());
 
-            testListStudents = testListStudentDao.filter(student);
+				SubjectDao subjectDao = new SubjectDao();
+				TestListStudentDao testListStudentDao = new TestListStudentDao();
+				List<TestListStudent> testListStudents = null; // 学生リスト
+				List<String> classNumList = classNumDao.filter(teacher.getSchool());
+				List<Subject> subjectList = subjectDao.filter(teacher.getSchool());
 
-            // ここでnull値の点数を「－」に変更
-            for (TestListStudent test : testListStudents) {
-                if (test.getPoint() == null) {
-                    test.setPoint(null); // nullをセットするだけで、"－" ではなく null にする
-                }
-            }
+				// 入学年度のリストを設定
+				LocalDate todaysDate = LocalDate.now();
+				int year = todaysDate.getYear();
+				List<Integer> entYearSet = new ArrayList<>();
+				for (int i = year - 10; i <= year + 10; i++) {
+					entYearSet.add(i);
+				}
 
-            // リクエストにクラス番号と科目情報を設定
-            request.setAttribute("class_num_set", classNumList);
-            request.setAttribute("subject_list_set", subjectList);
-            request.setAttribute("ent_year_set", entYearSet);
-            request.setAttribute("studentName", studentName);
+				testListStudents = testListStudentDao.filter(student);
 
-            //リクエストに得点リストをセット
-            request.setAttribute("test_list_students", testListStudents);
+				// ここでnull値の点数を「－」に変更
+				for (TestListStudent test : testListStudents) {
+					if (test.getPoint() == null) {
+						test.setPoint(null); // nullをセットするだけで、"－" ではなく null にする
+					}
+				}
 
-            System.out.println("testListStudents : " + testListStudents);
+				// リクエストにクラス番号と科目情報を設定
+				request.setAttribute("class_num_set", classNumList);
+				request.setAttribute("subject_list_set", subjectList);
+				request.setAttribute("ent_year_set", entYearSet);
+				request.setAttribute("studentName", studentName);
 
-            // FrontControllerを使用しているためreturn文でフォワードできる
-            request.getRequestDispatcher("test_list.jsp").forward(request, response);
+				request.setAttribute("f4", studentNo);
 
-        }
 
-        return null; // 戻り値を追加
-    }
+				//リクエストに得点リストをセット
+				request.setAttribute("test_list_students", testListStudents);
+
+				System.out.println("testListStudents : " + testListStudents);
+
+			}
+
+			// FrontControllerを使用しているためreturn文でフォワードできる
+			request.getRequestDispatcher("test_list.jsp").forward(request, response);
+
+		}
+
+		return null; // 戻り値を追加
+	}
 }
