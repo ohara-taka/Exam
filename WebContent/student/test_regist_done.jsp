@@ -29,7 +29,7 @@
 				<!-- Topページへ戻る為のリンクを下に表示 -->
 				<div class="student-links">
 					<a href="TestList.action">成績参照</a> <a
-						href="javascript:history.back();">戻る</a>
+						href="TestRegist.action">戻る</a>
 
 				</div>
 			</section>

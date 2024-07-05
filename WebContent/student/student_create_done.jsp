@@ -25,7 +25,7 @@
 
     <!-- Topページへ戻る為のリンクを下に表示 -->
     <div class="student-links">
-        <a href="javascript:history.back();">戻る</a>
+        <a href="StudentCreate.action">戻る</a>
         <a href="StudentList.action">学生一覧</a>
    </div>
     </section>
