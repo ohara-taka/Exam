@@ -119,8 +119,7 @@
 												value="${test.student.no}">${test.student.no}</td>
 											<td>${test.student.name}</td>
 											<td><input type="hidden" name="testNo[]"
-												value="${test.no}"> <input type="number"
-												name="points[]" value="${test.point}" required></td>
+												value="${test.no}"> <input type="number" name="points[]" value="${test.point == null ? '-' : test.point}" required></td>
 										</tr>
 									</c:forEach>
 								</table>
@@ -140,6 +139,3 @@
 	</div>
 
 	<%@ include file="../footer.jsp"%>
-
-</body>
-</html>

@@ -9,7 +9,7 @@ public class Test implements Serializable {
     private Subject subject;
     private School school;
     private int no;
-    private int point;
+    private Integer point; // intからIntegerに変更する
 
     // ゲッターメソッド
     public Student getStudent() {
@@ -27,7 +27,7 @@ public class Test implements Serializable {
     public int getNo() {
         return no;
     }
-    public int getPoint() {
+    public Integer getPoint() { // intからIntegerに変更する
         return point;
     }
 
@@ -47,8 +47,7 @@ public class Test implements Serializable {
     public void setNo(int no) {
         this.no = no;
     }
-    public void setPoint(int point) {
+    public void setPoint(Integer point) { // intからIntegerに変更する
         this.point = point;
     }
 }
-
