@@ -119,7 +119,7 @@
 												value="${test.student.no}">${test.student.no}</td>
 											<td>${test.student.name}</td>
 											<td><input type="hidden" name="testNo[]"
-												value="${test.no}"> <input type="number" name="points[]" placeholder="未登録" value="${test.point == null ? '' : test.point}" required></td>
+												value="${test.no}"> <input type="number" name="points[]" placeholder="未登録" value="${test.point == null ? '' : test.point}"></td>
 										</tr>
 									</c:forEach>
 								</table>
