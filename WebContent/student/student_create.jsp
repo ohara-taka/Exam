@@ -5,7 +5,7 @@
 
 <!-- CSS -->
 <style>
-    /* スタイルの定義はここに */
+    /* スタイルの定義はここにaa */
     label {
         display: inline-block;
         width: 100%;
