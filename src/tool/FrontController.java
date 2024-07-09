@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns={"*.action"})
 @MultipartConfig(
-	location = "C:/Users/takuma/git/Exam/WebContent/student", // 一時ディレクトリを指定
+	location = "./", // 一時ディレクトリを指定
     maxFileSize = 20848820L,
     maxRequestSize = 418018841L,
     fileSizeThreshold = 1048576
