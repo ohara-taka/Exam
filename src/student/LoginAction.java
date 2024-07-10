@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import bean.Teacher;
 import dao.TeacherDao;
 
-
 @WebServlet(urlPatterns={"/"})
 public class LoginAction extends HttpServlet {
 
@@ -40,17 +39,20 @@ public class LoginAction extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/student/menu.jsp");
                 } else {
                     message = "ログインに失敗しました。IDまたはパスワードが正しくありません";
+                    request.setAttribute("id", id); // 入力されたIDをリクエスト属性に設定
                     request.setAttribute("message", message);
                     request.getRequestDispatcher("/student/login.jsp").forward(request, response);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 message = "ログイン処理中にエラーが発生しました";
+                request.setAttribute("id", id); // 入力されたIDをリクエスト属性に設定
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                request.getRequestDispatcher("/student/login.jsp").forward(request, response);
             }
         } else {
             message = "IDとパスワードを入力してください";
+            request.setAttribute("id", id); // 入力されたIDをリクエスト属性に設定
             request.setAttribute("message", message);
             request.getRequestDispatcher("/student/login.jsp").forward(request, response);
         }

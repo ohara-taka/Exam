@@ -25,7 +25,7 @@
         <div class="login-box">
             <h2>ログイン</h2>
             <form method="post" action="${pageContext.request.contextPath}/loginAction"> <!-- 送信先URLを指定 -->
-            	<div class="error-message">
+                <div class="error-message">
                     <% if (!message.isEmpty()) { %>
                         <p><%= message %></p>
                     <% } %>

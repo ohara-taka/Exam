@@ -26,8 +26,9 @@ public class LoginRequiredFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        // ログイン画面（login.jsp）はフィルターをスキップする
+        // ログイン画面（login.jsp）とログアウト画面（logout.jsp）はフィルターをスキップする
         String loginURI = request.getContextPath() + "/student/";
+        String logoutURI = request.getContextPath() + "/student/logout.jsp";
         boolean loggedIn = false;
 
         // セッションからTeacherオブジェクトを取得してログイン状態を確認
@@ -36,8 +37,8 @@ public class LoginRequiredFilter implements Filter {
             loggedIn = true;
         }
 
-        // ログイン済みの場合は次のフィルターを呼び出す
-        if (loggedIn || request.getRequestURI().equals(loginURI)) {
+        // ログイン済みの場合またはログイン画面またはログアウト画面の場合は次のフィルターを呼び出す
+        if (loggedIn || request.getRequestURI().equals(loginURI) || request.getRequestURI().equals(logoutURI)) {
             chain.doFilter(request, response);
         } else {
             // ログインしていない場合はログイン画面にリダイレクト

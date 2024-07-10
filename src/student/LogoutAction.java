@@ -13,13 +13,12 @@ public class LogoutAction extends Action {
 
         HttpSession session = request.getSession();
 
-        if (session.getAttribute("teacher") != null) {
-            session.removeAttribute("teacher");
-            // ログアウト後に "/" にリダイレクトする
-            response.sendRedirect(request.getContextPath() + "/student/");
-            return null; // リダイレクトしたので、ここで処理を終了する
-        }
+        // セッションから teacher を削除して無効化する
+        session.removeAttribute("teacher");
+        session.invalidate(); // セッションを無効化する
 
-        return "/"; // teacher がセッションにない場合は通常のメニューページに遷移する
+        // ログアウト後にログアウト画面へリダイレクトする
+        response.sendRedirect(request.getContextPath() + "/student/logout.jsp");
+        return null; // リダイレクトしたので、ここで処理を終了する
     }
 }

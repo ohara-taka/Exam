@@ -33,9 +33,11 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
+
+
 
 .container {
     background-color: #ffffff;
@@ -43,22 +45,23 @@ body {
     width: 700px;
     text-align: center;
     border-radius: 8px;
+    height: 100%; /* 画面の高さいっぱいに設定 */
+    display: flex;
+    flex-direction: column;
 }
 
 header {
-
+    position: fixed; /* ヘッダーを固定位置に配置 */
+    top: 0; /* 上端に配置 */
+    left: 0;
+    right: 0;
+    z-index: 1000; /* 他の要素よりも手前に表示 */
     background-color: #e0ebff;
-
     padding: 20px;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     border-radius: 8px 8px 0 0;
-
 }
 
 header h1 {
@@ -73,6 +76,10 @@ header h1 {
 
 main {
     padding: 20px;
+    padding-top: 80px; /* メインコンテンツがヘッダーの下に配置されるように上部余白を追加 */
+    flex: 1; /* 残りの空間を全て使う */
+    height: 100%;
+    overflow-y: auto; /* メインコンテンツが画面よりも大きい場合にスクロール可能にする */
 }
 
 .login-box {
@@ -132,9 +139,13 @@ main {
 }
 
 footer {
+    position: fixed; /* 画面下部に固定するための設定 */
+    bottom: 0; /* 下端に配置 */
+    left: 0;
+    width: 100%; /* 画面幅いっぱいに広げる */
     background-color: #f0f0f0;
     padding: 10px 0;
-    border-radius: 0 0 8px 8px;
+    border-radius: 8px 8px 0 0; /* 任意の角丸設定 */
     color: #666;
     font-size: 0.8em;
 }

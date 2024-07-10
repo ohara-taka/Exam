@@ -16,7 +16,8 @@
                 <form action="${pageContext.request.contextPath}/subject/update" method="post">
                     <div class="form-group">
                         <label for="subject-code">科目コード</label>
-                        <input type="text" id="subject-code" name="cd" value="${subject.cd}" placeholder="科目コードを入力してください">
+                        <input type="text" id="subject-code" name="cd" value="${subject.cd}" style="display: none;">
+                        <p>　${subject.cd}</p>
                     </div>
                     <div class="form-group">
                         <label for="subject-name">科目名</label>
