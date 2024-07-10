@@ -72,7 +72,7 @@
                     <a>${no}</a><br><br>
 
                     <label for="name">氏名</label><br>
-                    <input type="text" id="name" name="name" maxlength="30" value="${name}"><br>
+                    <input type="text" id="name" name="name" maxlength="30" value="${name}" required><br>
 
                     <label for="class_num">クラス</label><br>
                     <select id="class_num" name="class_num">
