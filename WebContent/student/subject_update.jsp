@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label for="subject-name">科目名</label>
-                        <input type="text" id="subject-name" name="name" value="${subject.name}" placeholder="科目名を入力してください">
+                        <input type="text" id="subject-name" name="name" value="${subject.name}" placeholder="科目名を入力してください" required>
                     </div>
                     <div class="form-buttons">
                         <button type="submit">変更</button>
