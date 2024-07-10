@@ -29,7 +29,7 @@
 
 					<form class="search-form" action="TestRegist.action" method="post">
 						<div class="form-group">
-							<label for="year">入学年度</label> <select id="ent_year" name="f1">
+							<label for="year">入学年度</label> <select id="ent_year" name="f1" required>
 								<option value="" disabled selected>--------</option>
 								<%
                                     int currentYear = java.time.Year.now().getValue();
@@ -51,7 +51,7 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="class">クラス</label> <select id="class" name="f2">
+							<label for="class">クラス</label> <select id="class" name="f2"  required>
 								<option value="">------</option>
 								<c:forEach var="num" items="${class_num_set}">
 									<option value="${num}"
@@ -69,7 +69,7 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="times">回数</label> <select id="times" name="f4">
+							<label for="times">回数</label> <select id="times" name="f4" required>
 								<option value="">------</option>
 								<%
                                     int TestNumber = 2;
@@ -119,7 +119,7 @@
 												value="${test.student.no}">${test.student.no}</td>
 											<td>${test.student.name}</td>
 											<td><input type="hidden" name="testNo[]"
-												value="${test.no}"> <input type="number" name="points[]" placeholder="未登録" value="${test.point == null ? '' : test.point}"></td>
+												value="${test.no}"> <input type="number" name="points[]" placeholder="未登録" value="${test.point == null ? '' : test.point}" min="0" max="100"></td>
 										</tr>
 									</c:forEach>
 								</table>
