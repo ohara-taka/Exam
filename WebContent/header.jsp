@@ -8,7 +8,7 @@
 </head>
 <body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-    <tr bgcolor="#aaaaff">
+    <tr bgcolor="#CEE3F6">
         <td width="80%"><h1>　得点管理システム</h1></td>
         <td width="20%" valign="bottom">
             <%
