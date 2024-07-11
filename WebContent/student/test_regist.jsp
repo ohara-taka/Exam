@@ -1,5 +1,12 @@
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<%@ page import="dao.TestDao"%>
+<%@ page import="dao.SubjectDao"%>
+<%@ page import="bean.Test"%>
+<%@ page import="bean.Subject"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <head>
 <title>科目情報登録</title>
 <link rel="stylesheet" href="../css/menu-styles.css">
@@ -21,6 +28,13 @@
 	}
 </script>
 <style>
+
+main {
+    flex: 1; /* 残りの空間を全て使う */
+    overflow-y: auto; /* スクロール可能にする */
+}
+
+
 button {
 	padding: 8px 16px;
 	background-color: #6c757d;
@@ -108,25 +122,13 @@ button:hover {
 </style>
 </head>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="java.util.List"%>
-<%@ page import="dao.TestDao"%>
-<%@ page import="dao.SubjectDao"%>
-<%@ page import="bean.Test"%>
-<%@ page import="bean.Subject"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ include file="../header.jsp"%>
 
 <div class="container">
 	<div class="content">
 		<%@ include file="sideber.jsp"%>
 		<div class="main-content">
-			<header>
 				<h2>成績管理</h2>
-			</header>
-
 			<div class="container2">
 
 
@@ -254,4 +256,3 @@ button:hover {
 </div>
 
 <%@ include file="../footer.jsp"%>
-</html>

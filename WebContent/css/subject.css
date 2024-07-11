@@ -1,5 +1,16 @@
 
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th{
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+
 .subject-management-sub {
     background-color: #fff;
 
@@ -19,7 +30,6 @@
 .subject-management-sub .add-new {
     display: inline-block;
     margin-bottom: 10px;
-    text-decoration: none;
     color: #007bff;
     float: right;
 }
@@ -41,7 +51,6 @@ border-bottom: 2px solid #ccc;
 
 .subject-management-sub a {
     margin-right: 10px;
-    text-decoration: none;
     color: #007bff;
 }
 

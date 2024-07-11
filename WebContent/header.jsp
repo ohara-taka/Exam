@@ -18,7 +18,7 @@
                     Teacher teacher = (Teacher) session.getAttribute("teacher");
             %>
             <a><%= teacher.getName() %>様</a>　
-            <a href="Logout.action">ログアウト</a>
+            <a href="Logout.action" style="color:#007bff">ログアウト</a>
             <%
                 }
             %>
