@@ -61,7 +61,6 @@ public class TestRegistExecuteAction extends Action {
                     System.out.println("point: " + point);
 
 
-
                     // データベースに保存する処理など
                     // Testオブジェクトを作成
                     Test test = new Test();
