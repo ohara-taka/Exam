@@ -17,7 +17,7 @@
                     // teacherオブジェクトを取得
                     Teacher teacher = (Teacher) session.getAttribute("teacher");
             %>
-            <a href="kensho_you.jsp"><%= teacher.getName() %></a>　
+            <a><%= teacher.getName() %></a>　
             <a href="Logout.action">ログアウト</a>
             <%
                 }
