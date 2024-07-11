@@ -14,11 +14,36 @@ function validateForm() {
 
     if (entYear === "" || classNum === "" || subject === "" || times === "") {
         document.getElementById("error").style.display = "block";
+        document.getElementById("search-results").style.display = "none";
         return false;
     }
     return true;
 }
 </script>
+<style>
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    margin-right: 10px;
+}
+
+.form-group select {
+    margin-right: 10px;
+}
+
+.search-form button {
+    margin-left: 10px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+</style>
 </head>
 <body>
 
@@ -108,51 +133,54 @@ function validateForm() {
                                     }
                                 %>
                             </select>
+                            <!-- 検索ボタンを追加 -->
+                            <button type="submit">検索</button>
                         </div>
                         <!-- エラーメッセージの追加 -->
                         <div id="error" class="error-message" style="display: none;">入学年度とクラスと科目と回数を選択してください</div>
-                        <button type="submit">検索</button>
                     </form>
 
-                    <form action="TestRegistExecute.action" method="post">
-                        <c:choose>
-                            <c:when test="${testList.size() > 0}">
-                                <div>科目 : ${subjectName} ${f4}回</div>
-                                <!-- 科目名を隠しフィールドとして追加 -->
-                                <input type="hidden" name="subjectName" value="${subjectName}">
-                                <input type="hidden" name="subjectCd" value="${subjectCd}">
+                    <div id="search-results" style="display: ${testList.size() > 0 ? 'block' : 'none'};">
+                        <form action="TestRegistExecute.action" method="post">
+                            <c:choose>
+                                <c:when test="${testList.size() > 0}">
+                                    <div>科目 : ${subjectName} ${f4}回</div>
+                                    <!-- 科目名を隠しフィールドとして追加 -->
+                                    <input type="hidden" name="subjectName" value="${subjectName}">
+                                    <input type="hidden" name="subjectCd" value="${subjectCd}">
 
-                                <table>
-                                    <tr>
-                                        <th>入学年度</th>
-                                        <th>クラス</th>
-                                        <th>学生番号</th>
-                                        <th>氏名</th>
-                                        <th>点数</th>
-                                    </tr>
-                                    <c:forEach var="test" items="${testList}">
+                                    <table>
                                         <tr>
-                                            <td>${test.student.entYear}</td>
-                                            <td><input type="hidden" name="classNum[]"
-                                                value="${test.classNum}">${test.classNum}</td>
-                                            <td><input type="hidden" name="studentNo[]"
-                                                value="${test.student.no}">${test.student.no}</td>
-                                            <td>${test.student.name}</td>
-                                            <td><input type="hidden" name="testNo[]"
-                                                value="${test.no}"> <input type="number" name="points[]" placeholder="未登録" value="${test.point == null ? '' : test.point}" min="0" max="100"></td>
+                                            <th>入学年度</th>
+                                            <th>クラス</th>
+                                            <th>学生番号</th>
+                                            <th>氏名</th>
+                                            <th>点数</th>
                                         </tr>
-                                    </c:forEach>
-                                </table>
-                                <button type="submit">登録して終了</button>
-                            </c:when>
-                            <c:otherwise>
-                                <c:if
-                                    test="${not empty f1 or not empty f2 or not empty f3 or not empty f4}">
-                                    <div>学生情報が存在しませんでした</div>
-                                </c:if>
-                            </c:otherwise>
-                        </c:choose>
-                    </form>
+                                        <c:forEach var="test" items="${testList}">
+                                            <tr>
+                                                <td>${test.student.entYear}</td>
+                                                <td><input type="hidden" name="classNum[]"
+                                                    value="${test.classNum}">${test.classNum}</td>
+                                                <td><input type="hidden" name="studentNo[]"
+                                                    value="${test.student.no}">${test.student.no}</td>
+                                                <td>${test.student.name}</td>
+                                                <td><input type="hidden" name="testNo[]"
+                                                    value="${test.no}"> <input type="number" name="points[]" placeholder="未登録" value="${test.point == null ? '' : test.point}" min="0" max="100"></td>
+                                            </tr>
+                                        </c:forEach>
+                                    </table>
+                                    <button type="submit">登録して終了</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:if
+                                        test="${not empty f1 or not empty f2 or not empty f3 or not empty f4}">
+                                        <div>学生情報が存在しませんでした</div>
+                                    </c:if>
+                                </c:otherwise>
+                            </c:choose>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
