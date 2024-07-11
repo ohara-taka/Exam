@@ -425,4 +425,52 @@ public Student get(String no, String schoolCd) throws Exception {
     return student;
 }
 
+public List<Student> getAll(School school) throws SQLException {
+    List<Student> studentList = new ArrayList<>();
+    Connection con = null;
+    PreparedStatement st = null;
+    ResultSet rs = null;
+
+    try {
+        con = getConnection(); // getConnection() で SQLException が発生する可能性がある
+        String baseSql = "SELECT * FROM STUDENT WHERE SCHOOL_CD = ?";
+        st = con.prepareStatement(baseSql);
+        st.setString(1, school.getCd());
+
+        rs = st.executeQuery();
+
+        while (rs.next()) {
+            Student student = new Student();
+            student.setNo(rs.getString("NO"));
+            student.setName(rs.getString("NAME"));
+            student.setEntYear(rs.getInt("ENT_YEAR"));
+            student.setClassNum(rs.getString("CLASS_NUM"));
+            student.setAttend(rs.getBoolean("IS_ATTEND"));
+            // student.setSchool(schoolDao.get(rs.getString("SCHOOL_CD")));
+
+            studentList.add(student);
+        }
+    } catch (SQLException e) {
+        throw e; // 例外を上位に投げる
+    } catch (Exception e) {
+		// TODO 自動生成された catch ブロック
+		e.printStackTrace();
+	} finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+            if (st != null) {
+                st.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException sqle) {
+            throw sqle; // 例外を上位に投げる
+        }
+    }
+
+    return studentList;
+}
 }
