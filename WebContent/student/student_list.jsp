@@ -91,7 +91,8 @@
             </div>
             <form action="StudentList.action" method="post">
                 <div class="container2">
-                    <div class="field-container">
+                    <!-- <div class="field-container"> -->
+                    <div class="form-group">
                         入学年度:
                         <select name="f1">
                             <option value="0">選択してください</option>
@@ -100,7 +101,8 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <div class="field-container">
+                    <!-- <div class="field-container"> -->
+                    <div class="form-group">
                         クラス:
                         <select name="f2">
                             <option value="0">選択してください</option>
