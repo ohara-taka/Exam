@@ -12,8 +12,8 @@
         <div class="main-content">
             <section class="subject-management-sub">
 
-                <div class="subject-title-style">科目削除確認</div>
-                <p>${subjectName}（${subjectCd}）を削除してもよろしいですか？</p>
+                <div class="subject-title-style">科目情報削除</div>
+                <p>「${subjectName}（${subjectCd}）」を削除してもよろしいですか？</p>
                 <form action="SubjectDeleteExecute.action" method="post">
                     <input type="hidden" name="cd" value="${subjectCd}">
                     <div class="form-buttonsr">

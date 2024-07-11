@@ -109,10 +109,10 @@ border-bottom: 2px solid #ccc;
 }
 
 .form-buttonsr button {
-    background-color: #ff2222;
+    background-color: #DC3545;
     color: white;
     border: none;
-    padding: 15px 30px; /* 50% increase from 10px 20px */
+    padding: 4px 20px; /* 50% increase from 10px 20px */
     border-radius: 6px; /* 50% increase from 4px */
     cursor: pointer;
     font-size: 18px; /* Increased to make button text larger */
