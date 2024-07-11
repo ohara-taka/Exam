@@ -15,13 +15,13 @@
                 <section class="subject-management-sub">
                     <div class="subject-title-style">科目管理</div>
                     <a href="SubjectCreate.action" class="add-new">科目新規追加</a> <!-- 科目新規追加ボタン -->
-                    <p>School Code: ${schoolCd}</p> <!-- School Codeを表示 -->
+                    <!-- <p>School Code: ${schoolCd}</p> School Codeを表示 -->
                     <table>
                         <thead>
                             <tr>
                                 <th>科目コード</th>
                                 <th>科目名</th>
-                                <th>操作</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
