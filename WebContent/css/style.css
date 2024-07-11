@@ -30,6 +30,10 @@ header, footer {
 	display: flex;;
 }
 
+#error {
+	margin-left: 10px;
+}
+
 .login {
 	display: flex; width; 400 px;
 	text-align: center;

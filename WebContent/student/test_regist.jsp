@@ -23,26 +23,36 @@ function validateForm() {
 <style>
 .form-group {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+    flex-direction: column; /* 縦方向に配置 */
+    margin-right: 20px; /* 横方向に並べるためのスペース */
+}
+
+.search-form {
+    display: flex; /* フォーム全体を横並びにする */
+    flex-wrap: wrap; /* 要素が画面幅に合わせて折り返すように */
 }
 
 .form-group label {
-    margin-right: 10px;
+    margin-bottom: 5px; /* ラベルとフォームの間のスペース */
 }
 
 .form-group select {
     margin-right: 10px;
 }
 
-.search-form button {
-    margin-left: 10px;
-}
-
 .error-message {
     color: red;
     margin-top: 10px;
 }
+
+#times {
+	width: 60px;
+}
+
+#ent_year {
+	width: 100px;
+}
+
 </style>
 </head>
 <body>
