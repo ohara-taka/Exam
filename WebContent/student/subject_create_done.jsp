@@ -26,6 +26,7 @@
 
     <!-- Topページへ戻る為のリンクを下に表示 -->
     <div class="student-links">
+    	<a href="SubjectCreate.action">戻る</a>
         <a href="SubjectList.action">科目一覧</a>
     </div>
 
