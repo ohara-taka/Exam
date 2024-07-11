@@ -13,7 +13,6 @@ body {
 	width: 80%; /* ヘッダーとフッターの幅を80%に設定 */
 	margin: 0 auto; /* 水平方向に中央揃え */
 	font-family: Arial, sans-serif;
-	background-color: #f0f0f0;
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
@@ -50,7 +49,6 @@ main {
 	max-width: 1200px;
 	margin: 0 auto;
 	background-color: #ffffff;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 }
 
@@ -85,6 +83,7 @@ main {
 .main-content {
 	flex: 1;
 	padding: 20px;
+
 }
 
 .main-content h2 {
@@ -160,7 +159,7 @@ main {
 
 .registration-complete {
 	text-align: center;
-	background-color: green;
+	background-color: #77aa77;
 	fontcolor: black; /* 文字色を黒に設定 */
 }
 
@@ -190,18 +189,19 @@ main {
 }
 
 .student-custom-table {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between; /* 列の間隔を均等に配置 */
+	width: 100%;
+	border-collapse: collapse;
 }
-
 .student-custom-table th, .student-custom-table td {
-	flex: 1; /* 列の幅を均等にする */
+	border: none; /* ボーダーを消す */
 	padding: 8px; /* セルの余白を調整 */
+	border-bottom: 1px solid #ddd; /* ヘッダーのアンダーバーを設定 */
+	text-align: left; /* テキストを左揃え */
+
 }
 
 .main-content {
-	height: calc(100vh - 200px); /* ヘッダーとフッターの高さを考慮して調整 */
+	height: calc(100vh - 100px); /* ヘッダーとフッターの高さを考慮して調整 */
 	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
@@ -213,20 +213,14 @@ main {
 	margin-top: 20px;
 }
 
-.student-custom-table {
-	width: 100%;
-	border-collapse: collapse;
-}
-
-.student-custom-table th, .student-custom-table td {
-	border: 1px solid #ddd;
-	padding: 8px;
-	text-align: left;
-}
-
 .student-custom-table th {
-	background-color: #f2f2f2;
+	background-color: #ffffff;
 	position: sticky;
 	top: 0;
 	z-index: 10;
+}
+
+.student-custom-table tr {
+	flex-direction: column;
+	width: 100%; /* 幅を100%に設定 */
 }
