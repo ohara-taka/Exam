@@ -93,7 +93,7 @@
                 <div class="container2">
                     <!-- <div class="field-container"> -->
                     <div class="form-group">
-                        入学年度:
+                        入学年度
                         <select name="f1">
                             <option value="0">選択してください</option>
                             <c:forEach var="year" items="${ent_year_set}">
@@ -103,7 +103,7 @@
                     </div>
                     <!-- <div class="field-container"> -->
                     <div class="form-group">
-                        クラス:
+                        クラス
                         <select name="f2">
                             <option value="0">選択してください</option>
                             <c:forEach var="classNum" items="${class_num_set}">
@@ -112,8 +112,8 @@
                         </select>
                     </div>
                     <div class="field-container">
-                        在学:
                         <input type="checkbox" name="f3" value="1" <c:if test="${f3 != null}">checked</c:if> />
+                    	在学中
                     </div>
                     <div class="field-container">
                         <button type="submit">絞り込み</button>

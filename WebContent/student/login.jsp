@@ -61,11 +61,11 @@
 			</div>
 			<div class="input-box">
 				<label for="id"></label> <input type="text" id="id" name="id"
-					value="<%= id %>" placeholder="ID" required>
+					value="<%= id %>" placeholder="半角でご入力ください" required>
 			</div>
 			<div class="input-box">
 				<label for="password"></label> <input type="password" id="password"
-					name="password" value="<%= password %>" placeholder="パスワード"
+					name="password" value="<%= password %>" placeholder="20文字以内の半角英数字でご入力ください"
 					required>
 			</div>
 			<div class="checkbox-box">

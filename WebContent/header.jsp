@@ -17,7 +17,7 @@
                     // teacherオブジェクトを取得
                     Teacher teacher = (Teacher) session.getAttribute("teacher");
             %>
-            <a><%= teacher.getName() %></a>　
+            <a><%= teacher.getName() %>様</a>　
             <a href="Logout.action">ログアウト</a>
             <%
                 }
