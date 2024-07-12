@@ -26,13 +26,11 @@ body {
 	width: 95%;
 	margin: auto;
 	padding: 10px;
-
 }
 
 .container2>* {
 	margin-right: 10px;
-    flex: 1; /* 項目を均等に配置 */
-
+	flex: 1; /* 項目を均等に配置 */
 }
 
 .container2>*:last-child {
@@ -46,12 +44,11 @@ h2 {
 .form-group {
 	display: flex;
 	flex-direction: column;
-    margin-bottom: 10px; /* 各項目の間に余白を追加 */
-
+	margin-bottom: 10px; /* 各項目の間に余白を追加 */
 }
 
 .form-title {
-	font-size:13px;
+	font-size: 13px;
 	margin-right: 10px;
 }
 
@@ -96,8 +93,6 @@ input {
 	color: #FFCC00;
 	margin-left: 30px;
 }
-
-
 </style>
 </head>
 
@@ -153,9 +148,11 @@ input {
 								</c:forEach>
 							</select>
 						</div>
-						<button type="submit" name="action" value="sj">検索</button>
-						<div id="error" class="error-message" style="display: none;">入学年度とクラスと科目を選択してください</div>
-						<input type="hidden" value="sj" name="f">
+						<div>
+							<button type="submit" name="action" value="sj">検索</button>
+							<div id="error" class="error-message" style="display: none;">入学年度とクラスと科目を選択してください</div>
+							<input type="hidden" value="sj" name="f">
+						</div>
 					</div>
 
 					<!-- 科目情報のエラーメッセージを表示するための条件 -->
@@ -173,8 +170,10 @@ input {
 								name="f4" placeholder="学生番号を入力してください" value="${f4}"
 								maxlength="10" required>
 						</div>
-						<button type="submit" name="action" value="st">検索</button>
-						<input type="hidden" value="st" name="f">
+						<div>
+							<button type="submit" name="action" value="st">検索</button>
+							<input type="hidden" value="st" name="f">
+						</div>
 					</div>
 				</form>
 			</div>
