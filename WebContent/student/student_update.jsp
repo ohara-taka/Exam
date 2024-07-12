@@ -62,13 +62,13 @@
 
             <div class="main-content">
                 <h2 class="student-info-registration">&nbsp;&nbsp;&nbsp;学生情報変更</h2>
-                <form action="StudentUpdateExecute.action" method="get">
-                    <label for="ent_year">入学年度</label><br>
+                <form action="StudentUpdateExecute.action" method="get"><br>
+                    <label for="ent_year">入学年度</label><br><br>
                     <!-- <input type="text" id="ent_year" name="ent_year" value="${ent_year}" readonly><br> -->
-                    <a>${ent_year}</a><br><br>
+                    <a>　${ent_year}</a><br><br>
 
-                    <label for="no">学生番号</label><br>
-                    <input type="text" id="no" name="no" value="${no}" readonly style="display: none;">
+                    <label for="no">学生番号</label><br><br>
+                    　<input type="text" id="no" name="no" value="${no}" readonly style="display: none;">
                     <a>${no}</a><br><br>
 
                     <label for="name">氏名</label><br>
