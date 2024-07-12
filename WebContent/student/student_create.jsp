@@ -19,7 +19,6 @@ input[type="text"], select {
 	box-sizing: border-box;
 	padding: 5px;
 	margin-bottom: 10px;
-	border-radius: 5px;
 }
 
 form {
@@ -41,6 +40,11 @@ button {
 	color: red;
 	margin-bottom: 10px;
 }
+
+#csv-form {
+	margin-top:20px;
+}
+
 </style>
 
 <%@ include file="../header.jsp"%>
@@ -98,7 +102,7 @@ button {
 			<!-- CSVファイルアップロードフォーム -->
 			<h2>CSVファイル取り込み</h2>
 			<form action="UploadCsv.action" method="post"
-				enctype="multipart/form-data">
+				enctype="multipart/form-data" id="csv-form">
 				<input type="file" name="file" /> <input type="submit"
 					value="Upload" />
 			</form>
