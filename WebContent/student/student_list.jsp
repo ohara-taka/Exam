@@ -77,7 +77,6 @@ select {
 #is-attend a {
 	font-size: 12px;
 }
-
 </style>
 </head>
 
@@ -96,7 +95,7 @@ select {
 					<!-- <div class="field-container"> -->
 					<div class="form-group">
 						入学年度: <select name="f1">
-							<option value="0">選択してください</option>
+							<option value="0">--------</option>
 							<c:forEach var="year" items="${ent_year_set}">
 								<option value="${year}"
 									<c:if test="${f1 == year}">selected</c:if>>${year}</option>
@@ -106,7 +105,7 @@ select {
 					<!-- <div class="field-container"> -->
 					<div class="form-group">
 						クラス: <select name="f2">
-							<option value="0">選択してください</option>
+							<option value="0">--------</option>
 							<c:forEach var="classNum" items="${class_num_set}">
 								<option value="${classNum}"
 									<c:if test="${f2 == classNum}">selected</c:if>>${classNum}</option>
@@ -127,33 +126,31 @@ select {
 			</form>
 			<div class="table-container">
 				<c:choose>
-					<c:when test="${students != null}">
-						<c:if test="${students.size() > 0}">
-							<div>検索結果件数: ${students.size()}件</div>
-							<table class="student-custom-table">
+					<c:when test="${students != null && students.size() > 0}">
+						<div>検索結果件数: ${students.size()}件</div>
+						<table class="student-custom-table">
+							<tr>
+								<th>入学年度</th>
+								<th>学生番号</th>
+								<th>氏名</th>
+								<th>クラス</th>
+								<th>在学中</th>
+								<th></th>
+							</tr>
+							<c:forEach var="student" items="${students}">
 								<tr>
-									<th>入学年度</th>
-									<th>学生番号</th>
-									<th>氏名</th>
-									<th>クラス</th>
-									<th>在学中</th>
-									<th></th>
+									<td>${student.entYear}</td>
+									<td>${student.no}</td>
+									<td>${student.name}</td>
+									<td>${student.classNum}</td>
+									<td class="attend-status"><c:choose>
+											<c:when test="${student.isAttend()}">○</c:when>
+											<c:otherwise>×</c:otherwise>
+										</c:choose></td>
+									<td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
 								</tr>
-								<c:forEach var="student" items="${students}">
-									<tr>
-										<td>${student.entYear}</td>
-										<td>${student.no}</td>
-										<td>${student.name}</td>
-										<td>${student.classNum}</td>
-										<td class="attend-status"><c:choose>
-												<c:when test="${student.isAttend()}">○</c:when>
-												<c:otherwise>×</c:otherwise>
-											</c:choose></td>
-										<td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
-									</tr>
-								</c:forEach>
-							</table>
-						</c:if>
+							</c:forEach>
+						</table>
 					</c:when>
 					<c:otherwise>
 						<div>学生情報が存在しませんでした</div>
