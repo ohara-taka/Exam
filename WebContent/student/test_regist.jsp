@@ -128,7 +128,7 @@ button:hover {
 	<div class="content">
 		<%@ include file="sideber.jsp"%>
 		<div class="main-content">
-				<h2>成績管理</h2>
+				<h2>&nbsp;&nbsp;&nbsp;成績管理</h2>
 			<div class="container2">
 
 

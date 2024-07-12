@@ -16,7 +16,7 @@
 
 
 		<div class="main-content">
-			<h2>メニュー</h2>
+			<h2>&nbsp;&nbsp;&nbsp;メニュー</h2>
 			<div class="cards">
 				<div class="card student-management">
 					<a href="StudentList.action">学生管理</a>

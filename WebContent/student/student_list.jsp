@@ -58,6 +58,11 @@ button:hover {
 	margin-bottom: 10px;
 }
 
+.new-registration a{
+	color: #007bff;
+}
+
+
 select {
 	border: 1px solid #ccc;
 	border-radius: 5px;
@@ -94,7 +99,7 @@ select {
 				<div class="container2">
 					<!-- <div class="field-container"> -->
 					<div class="form-group">
-						入学年度: <select name="f1">
+						入学年度 <select name="f1">
 							<option value="0">--------</option>
 							<c:forEach var="year" items="${ent_year_set}">
 								<option value="${year}"
@@ -104,7 +109,7 @@ select {
 					</div>
 					<!-- <div class="field-container"> -->
 					<div class="form-group">
-						クラス: <select name="f2">
+						クラス <select name="f2">
 							<option value="0">--------</option>
 							<c:forEach var="classNum" items="${class_num_set}">
 								<option value="${classNum}"
