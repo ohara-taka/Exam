@@ -219,6 +219,12 @@ button {
 	flex-direction: column;
 }
 
+.main-content2 {
+	height: calc(100vh - 100px); /* ヘッダーとフッターの高さを考慮して調整 */
+	overflow-y: auto;
+	flex-direction: column;
+}
+
 .table-container {
 	flex: 1;
 	overflow-y: auto;

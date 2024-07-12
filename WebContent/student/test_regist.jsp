@@ -8,7 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
-<title>科目情報登録</title>
+<title>成績管理</title>
 <link rel="stylesheet" href="../css/menu-styles.css">
 <link rel="stylesheet" href="../css/test-regist.css">
 <!-- JavaScriptの追加 -->
