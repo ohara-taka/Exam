@@ -30,7 +30,7 @@
 <h2 style="text-align: left; background-color: #dddddd;">ログアウト</h2>
 
 <p style="background-color: #77aa77; margin-bottom:50px;">ログアウトしました</p>
-<a href="./"><p style="text-align: left;">ログイン</p></a>
+<a href="./" style="text-align: left; color:#007bff;"><p>ログイン</p></a>
 
 </div>
 </main>

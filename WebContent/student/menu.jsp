@@ -6,35 +6,35 @@
 <%@include file="../header.jsp"%>
 
 
-	<div class="container">
+<div class="container">
 
 
-		<div class="content">
+	<div class="content">
 
-			<%@include file="sideber.jsp"%>
+		<%@include file="sideber.jsp"%>
 
 
 
-			<div class="main-content">
-				<h2>メニュー</h2>
-				<div class="cards">
-					<div class="card student-management">
-						<a href="StudentList.action">学生管理</a>
-					</div>
-					<div class="card grade-management">
-						<p>成績管理</p>
-						<ul>
-							<li><a href="TestRegist.action">成績登録</a></li>
-							<li><a href="TestList.action">成績参照</a></li>
-						</ul>
-					</div>
-					<div class="card subject-management">
-						<a href="SubjectList.action">科目管理</a>
-					</div>
+		<div class="main-content">
+			<h2>メニュー</h2>
+			<div class="cards">
+				<div class="card student-management">
+					<a href="StudentList.action">学生管理</a>
+				</div>
+				<div class="card grade-management">
+					<p>成績管理</p>
+					<ul>
+						<li><a href="TestRegist.action">成績登録</a></li>
+						<li><a href="TestList.action">成績参照</a></li>
+					</ul>
+				</div>
+				<div class="card subject-management">
+					<a href="SubjectList.action">科目管理</a>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
 
 <%@include file="../footer.jsp"%>

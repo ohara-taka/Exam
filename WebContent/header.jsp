@@ -4,6 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="bean.Teacher" %> <!-- Teacherクラスをインポート -->
+<meta charset="UTF-8">
+<meta http-equiv="Content-Language" content="ja">
 <title>Servlet/JSP Samples</title>
 </head>
 <body>
